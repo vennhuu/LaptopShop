@@ -1,7 +1,9 @@
 package vn.spring.laptopshop.domain;
 
+import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "orders")
@@ -17,88 +21,124 @@ public class Order {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  private double totalPrice;
 
-  private String receiverName;
-  private String receiverAddress;
-  private String receiverPhone;
-  private String status;
+    private String orderNumber; // New field: orderNumber
 
-  // user id
-  // many orders => to one => user
-  @ManyToOne
-  @JoinColumn(name = "user_id")
-  private User user;
+    @Column(name = "order_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date; // New field: date
 
-  @OneToMany(mappedBy = "order")
-  private List<OrderDetail> orderDetails;
+    private double totalPrice;
 
-  public long getId() {
-    return id;
-  }
+    private String receiverName;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    private String receiverAddress;
 
-  public double getTotalPrice() {
-    return totalPrice;
-  }
+    private String receiverPhone;
 
-  public void setTotalPrice(double totalPrice) {
-    this.totalPrice = totalPrice;
-  }
+    private String status;
 
-  public String getReceiverName() {
-    return receiverName;
-  }
+    // user id
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-  public void setReceiverName(String receiverName) {
-    this.receiverName = receiverName;
-  }
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetails;
 
-  public String getReceiverAddress() {
-    return receiverAddress;
-  }
+    // Getter and Setter for orderNumber
+    public String getOrderNumber() {
+        return orderNumber;
+    }
 
-  public void setReceiverAddress(String receiverAddress) {
-    this.receiverAddress = receiverAddress;
-  }
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
 
-  public String getReceiverPhone() {
-    return receiverPhone;
-  }
+    // Getter and Setter for date
+    public Date getDate() {
+        return date;
+    }
 
-  public void setReceiverPhone(String receiverPhone) {
-    this.receiverPhone = receiverPhone;
-  }
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-  public String getStatus() {
-    return status;
-  }
+    public long getId() {
+        return id;
+    }
 
-  public void setStatus(String status) {
-    this.status = status;
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  public User getUser() {
-    return user;
-  }
+    public double getTotalPrice() {
+        return totalPrice;
+    }
 
-  public void setUser(User user) {
-    this.user = user;
-  }
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
-  public List<OrderDetail> getOrderDetails() {
-    return orderDetails;
-  }
+    public String getReceiverName() {
+        return receiverName;
+    }
 
-  public void setOrderDetails(List<OrderDetail> orderDetails) {
-    this.orderDetails = orderDetails;
-  }
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
 
-  @Override
-  public String toString() {
-    return "Order [id=" + id + ", totalPrice=" + totalPrice + "]";
-  }
+    public String getReceiverAddress() {
+        return receiverAddress;
+    }
+
+    public void setReceiverAddress(String receiverAddress) {
+        this.receiverAddress = receiverAddress;
+    }
+
+    public String getReceiverPhone() {
+        return receiverPhone;
+    }
+
+    public void setReceiverPhone(String receiverPhone) {
+        this.receiverPhone = receiverPhone;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
+    @Override
+    public String toString() {
+      return "Order [id=" + id + ", orderNumber=" + orderNumber + ", date=" + date + ", totalPrice=" + totalPrice
+          + ", receiverName=" + receiverName + ", receiverAddress=" + receiverAddress + ", receiverPhone="
+          + receiverPhone + ", status=" + status + ", user=" + user + ", orderDetails=" + orderDetails
+          + ", getOrderNumber()=" + getOrderNumber() + ", getDate()=" + getDate() + ", getId()=" + getId()
+          + ", getTotalPrice()=" + getTotalPrice() + ", getClass()=" + getClass() + ", getReceiverName()="
+          + getReceiverName() + ", getReceiverAddress()=" + getReceiverAddress() + ", getReceiverPhone()="
+          + getReceiverPhone() + ", getStatus()=" + getStatus() + ", getUser()=" + getUser() + ", getOrderDetails()="
+          + getOrderDetails() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+    }
+
+    
 }

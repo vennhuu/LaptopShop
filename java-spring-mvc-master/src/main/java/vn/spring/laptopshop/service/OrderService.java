@@ -3,15 +3,15 @@ package vn.spring.laptopshop.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import vn.spring.laptopshop.domain.Order;
 import vn.spring.laptopshop.domain.OrderDetail;
-import vn.spring.laptopshop.repository.CartDetailRepository;
-import vn.spring.laptopshop.repository.CartRepository;
+import vn.spring.laptopshop.domain.User;
 import vn.spring.laptopshop.repository.OrderDetailRepository;
 import vn.spring.laptopshop.repository.OrderRepository;
-import vn.spring.laptopshop.repository.ProductRepository;
 
 @Service
 public class OrderService {
@@ -26,6 +26,9 @@ public class OrderService {
     this.orderDetailRepository = orderDetailRepository;
   }
 
+  public Page<Order> fetchOrders(Pageable page){
+    return this.orderRepository.findAll(page) ;
+  }
   public List<Order> getAllOrders() {
     return this.orderRepository.findAll();
   }
@@ -68,5 +71,9 @@ public class OrderService {
       this.orderRepository.save(currentOrder);
     }
   }
+
+  public List<Order> fetchOrderByUser(User user) {
+        return this.orderRepository.findByUser(user);
+    }
 
 }

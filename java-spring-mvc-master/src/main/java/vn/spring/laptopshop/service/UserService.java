@@ -1,6 +1,9 @@
 package vn.spring.laptopshop.service;
 
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import vn.spring.laptopshop.domain.Role;
@@ -32,6 +35,9 @@ public class UserService {
     return this.userRepository.findAll();
   }
 
+  public Page<User> fetchUsers(Pageable page) {
+    return this.userRepository.findAll(page) ;
+  }
   public List<User> getOneUserByEmail(String email) {
     return this.userRepository.findOneByEmail(email);
   }
@@ -82,4 +88,5 @@ public class UserService {
   public long countOrders() {
     return this.orderRepository.count();
   }
+
 }
