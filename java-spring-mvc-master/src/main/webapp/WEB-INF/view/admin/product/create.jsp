@@ -25,7 +25,6 @@
               });
             });
           </script>
-
           <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
 
@@ -38,14 +37,14 @@
                 <div class="container-fluid px-4">
                   <h1 class="mt-4">Manage Products</h1>
                   <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"> <a href="/admin">Dashboard </a></li>
-                    <li class="breadcrumb-item active"><a href="/admin/product"> Products </a></li>
-                    <li class="breadcrumb-item active"><a href="/admin/product/create"> Create </a></li>
+                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                    <li class="breadcrumb-item active"><a href="/admin/product">Products</a></li>
+                    <li class="breadcrumb-item active"><a href="/admin/product/create">Create</a></li>
                   </ol>
                   <div class="mt-5">
                     <div class="row">
                       <div class="col-md-6 col-12 mx-auto">
-                        <h1> Create a product</h1>
+                        <h1>Create a product</h1>
                         <hr />
                         <form:form method="post" action="/admin/product/create" modelAttribute="newProduct" class="row"
                           enctype="multipart/form-data">
@@ -54,18 +53,18 @@
                             <c:set var="errorName">
                               <form:errors path="name" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Name</label>
+                            <label class="form-label">Name <span style="color: red;">*</span></label>
                             <form:input type="text" class="form-control ${not empty errorName ? 'is-invalid' : ''}"
-                              path="name" />
+                              path="name" required="true" />
                             ${errorName}
                           </div>
                           <div class="mb-3 col-12 col-md-6">
                             <c:set var="errorPrice">
                               <form:errors path="price" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Price</label>
+                            <label class="form-label">Price <span style="color: red;">*</span></label>
                             <form:input type="number" class="form-control ${not empty errorPrice ? 'is-invalid' : ''}"
-                              path="price" />
+                              path="price" required="true" />
                             ${errorPrice}
                           </div>
 
@@ -73,36 +72,35 @@
                             <c:set var="errorDetailDesc">
                               <form:errors path="detailDesc" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Detail description</label>
-                            <form:textarea type="text"
-                              class="form-control ${not empty errorDetailDesc ? 'is-invalid' : ''}" path="detailDesc" />
+                            <label class="form-label">Detail description <span style="color: red;">*</span></label>
+                            <form:textarea class="form-control ${not empty errorDetailDesc ? 'is-invalid' : ''}"
+                              path="detailDesc" required="true" />
                             ${errorDetailDesc}
                           </div>
-
 
                           <div class="mb-3 col-12 col-md-6">
                             <c:set var="errorShortDesc">
                               <form:errors path="shortDesc" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Short description</label>
+                            <label class="form-label">Short description <span style="color: red;">*</span></label>
                             <form:input type="text" class="form-control ${not empty errorShortDesc ? 'is-invalid' : ''}"
-                              path="shortDesc" />
+                              path="shortDesc" required="true" />
                             ${errorShortDesc}
                           </div>
                           <div class="mb-3 col-12 col-md-6">
                             <c:set var="errorQuantity">
                               <form:errors path="quantity" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Quantity</label>
-                            <form:input type="text" class="form-control ${not empty errorQuantity ? 'is-invalid' : ''}"
-                              path="quantity" />
+                            <label class="form-label">Quantity <span style="color: red;">*</span></label>
+                            <form:input type="number"
+                              class="form-control ${not empty errorQuantity ? 'is-invalid' : ''}" path="quantity"
+                              required="true" />
                             ${errorQuantity}
                           </div>
 
-
                           <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label">Factory</label>
-                            <form:select class="form-select" path="factory">
+                            <label class="form-label">Factory <span style="color: red;">*</span></label>
+                            <form:select class="form-select" path="factory" required="true">
                               <form:option value="APPLE">Apple (MacBook)</form:option>
                               <form:option value="ASUS">Asus</form:option>
                               <form:option value="DELL">Dell</form:option>
@@ -112,13 +110,13 @@
                             </form:select>
                           </div>
                           <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label">Target</label>
-                            <form:select class="form-select" path="target">
+                            <label class="form-label">Target <span style="color: red;">*</span></label>
+                            <form:select class="form-select" path="target" required="true">
                               <form:option value="GAMING">Gaming</form:option>
                               <form:option value="SINHVIEN-VANPHONG">Sinh viên - Văn phòng</form:option>
                               <form:option value="THIET-KE-DO-HOA">Thiết kế đồ họa</form:option>
                               <form:option value="MONG-NHE">Mỏng nhẹ</form:option>
-                              <form:option value="DOANH-NHAN ">Doanh nhân</form:option>
+                              <form:option value="DOANH-NHAN">Doanh nhân</form:option>
                             </form:select>
                           </div>
                           <div class="mb-3 col-12 col-md-6">

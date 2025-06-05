@@ -8,7 +8,7 @@
 
         <head>
           <meta charset="utf-8">
-          <title> Thanh toán - Laptopshop</title>
+          <title>Thanh toán - Laptopshop</title>
           <meta content="width=device-width, initial-scale=1.0" name="viewport">
           <meta content="" name="keywords">
           <meta content="" name="description">
@@ -28,19 +28,27 @@
           <link href="/client/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
           <link href="/client/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-
           <!-- Customized Bootstrap Stylesheet -->
           <link href="/client/css/bootstrap.min.css" rel="stylesheet">
 
           <!-- Template Stylesheet -->
           <link href="/client/css/style.css" rel="stylesheet">
+
+          <!-- Custom CSS -->
+          <style>
+            .error {
+              color: red;
+              font-size: 0.9em;
+              display: none;
+            }
+          </style>
         </head>
 
         <body>
 
           <!-- Spinner Start -->
           <div id="spinner"
-            class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+            class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-grow text-primary" role="status"></div>
           </div>
           <!-- Spinner End -->
@@ -79,7 +87,6 @@
                       </tr>
                     </c:if>
                     <c:forEach var="cartDetail" items="${cartDetails}">
-
                       <tr>
                         <th scope="row">
                           <div class="d-flex align-items-center">
@@ -112,22 +119,24 @@
                         </td>
                       </tr>
                     </c:forEach>
-
                   </tbody>
                 </table>
               </div>
               <c:if test="${not empty cartDetails}">
-                <form:form action="/place-order" method="post" modelAttribute="cart">
+                <form:form action="/place-order" method="post" modelAttribute="cart" onsubmit="return validateForm()">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                   <div class="mt-5 row g-4 justify-content-start">
                     <div class="col-12 col-md-6">
-                      <div class="p-4 ">
-                        <h5>Thông Tin Người Nhận
-                        </h5>
+                      <div class="p-4">
+                        <h5>Thông Tin Người Nhận</h5>
                         <div class="row">
                           <div class="col-12 form-group mb-3">
                             <label>Tên người nhận</label>
-                            <input class="form-control" name="receiverName" required />
+                            <input class="form-control" name="receiverName" pattern="[A-Za-zÀ-ỹ\s]+"
+                              title="Tên người nhận chỉ được chứa chữ cái và khoảng trắng (bao gồm ký tự tiếng Việt)"
+                              required />
+                            <span id="receiverNameError" class="error">Tên người nhận chỉ được chứa chữ cái và khoảng
+                              trắng (bao gồm ký tự tiếng Việt).</span>
                           </div>
                           <div class="col-12 form-group mb-3">
                             <label>Địa chỉ người nhận</label>
@@ -135,7 +144,10 @@
                           </div>
                           <div class="col-12 form-group mb-3">
                             <label>Số điện thoại</label>
-                            <input class="form-control" name="receiverPhone" required />
+                            <input class="form-control" name="receiverPhone" pattern="[0-9]{10,11}"
+                              title="Số điện thoại chỉ được chứa số và có độ dài 10-11 chữ số" required />
+                            <span id="receiverPhoneError" class="error">Số điện thoại chỉ được chứa số (10-11 chữ
+                              số).</span>
                           </div>
                           <div class="mt-4">
                             <i class="fas fa-arrow-left"></i>
@@ -147,10 +159,7 @@
                     <div class="col-12 col-md-6">
                       <div class="bg-light rounded">
                         <div class="p-4">
-                          <h1 class="display-6 mb-4">Thông Tin <span class="fw-normal">Thanh
-                              Toán</span>
-                          </h1>
-
+                          <h1 class="display-6 mb-4">Thông Tin <span class="fw-normal">Thanh Toán</span></h1>
                           <div class="d-flex justify-content-between">
                             <h5 class="mb-0 me-4">Phí vận chuyển</h5>
                             <div class="">
@@ -170,30 +179,24 @@
                             <fmt:formatNumber type="number" value="${totalPrice}" /> đ
                           </p>
                         </div>
-
                         <button
                           class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4">
                           Xác nhận thanh toán
                         </button>
-
                       </div>
                     </div>
                   </div>
                 </form:form>
               </c:if>
-
             </div>
           </div>
           <!-- Cart Page End -->
 
-
           <jsp:include page="../layout/footer.jsp" />
-
 
           <!-- Back to Top -->
           <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
               class="fa fa-arrow-up"></i></a>
-
 
           <!-- JavaScript Libraries -->
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -205,6 +208,54 @@
 
           <!-- Template Javascript -->
           <script src="/client/js/main.js"></script>
+
+          <!-- Custom JavaScript -->
+          <script>
+            function validateForm() {
+              const receiverName = document.querySelector("input[name='receiverName']").value;
+              const receiverPhone = document.querySelector("input[name='receiverPhone']").value;
+              const receiverNameError = document.getElementById("receiverNameError");
+              const receiverPhoneError = document.getElementById("receiverPhoneError");
+              let isValid = true;
+
+              // Kiểm tra receiverName (chỉ chữ và khoảng trắng, bao gồm ký tự tiếng Việt)
+              if (!/^[A-Za-zÀ-ỹ\s]+$/.test(receiverName)) {
+                receiverNameError.style.display = "block";
+                isValid = false;
+              } else {
+                receiverNameError.style.display = "none";
+              }
+
+              // Kiểm tra receiverPhone (chỉ số, 10-11 chữ số)
+              if (!/^[0-9]{10,11}$/.test(receiverPhone)) {
+                receiverPhoneError.style.display = "block";
+                isValid = false;
+              } else {
+                receiverPhoneError.style.display = "none";
+              }
+
+              return isValid;
+            }
+
+            // Thêm sự kiện kiểm tra khi nhập liệu
+            document.querySelector("input[name='receiverName']").addEventListener("input", function () {
+              const receiverNameError = document.getElementById("receiverNameError");
+              if (!/^[A-Za-zÀ-ỹ\s]*$/.test(this.value)) {
+                receiverNameError.style.display = "block";
+              } else {
+                receiverNameError.style.display = "none";
+              }
+            });
+
+            document.querySelector("input[name='receiverPhone']").addEventListener("input", function () {
+              const receiverPhoneError = document.getElementById("receiverPhoneError");
+              if (!/^[0-9]{0,11}$/.test(this.value)) {
+                receiverPhoneError.style.display = "block";
+              } else {
+                receiverPhoneError.style.display = "none";
+              }
+            });
+          </script>
         </body>
 
         </html>

@@ -145,22 +145,7 @@ public class User {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("User{");
-        sb.append("id=").append(id);
-        sb.append(", email=").append(email);
-        sb.append(", password=").append(password);
-        sb.append(", fullName=").append(fullName);
-        sb.append(", address=").append(address);
-        sb.append(", phone=").append(phone);
-        sb.append(", avatar=").append(avatar);
-        sb.append(", role=").append(role);
-        sb.append(", orders=").append(orders);
-        sb.append(", cart=").append(cart);
-        sb.append(", feed=").append(feed);
-        sb.append('}');
-        return sb.toString();
+        return "User{id=" + id + ", email='" + email + "', fullName='" + fullName + "'}";
     }
-
 
 }

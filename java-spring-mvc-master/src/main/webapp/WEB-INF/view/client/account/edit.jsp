@@ -33,6 +33,15 @@
 
                 <!-- Template Stylesheet -->
                 <link href="/client/css/style.css" rel="stylesheet">
+
+                <!-- Custom CSS -->
+                <style>
+                    .error {
+                        color: red;
+                        font-size: 0.9em;
+                        display: none;
+                    }
+                </style>
             </head>
 
             <body>
@@ -51,7 +60,8 @@
                         <h2 class="text-center">Chỉnh sửa thông tin cá nhân</h2>
                         <div class="row justify-content-center">
                             <div class="col-md-6">
-                                <form:form method="post" action="/account/update" modelAttribute="newUser1">
+                                <form:form method="post" action="/account/update" modelAttribute="newUser1"
+                                    onsubmit="return validateForm()">
                                     <div class="mb-3" style="display: none;">
                                         <label class="form-label">Id</label>
                                         <form:input type="text" class="form-control" path="id" />
@@ -62,11 +72,22 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Phone number</label>
-                                        <form:input type="text" class="form-control" path="phone" />
+                                        <form:input type="text" class="form-control" path="phone" pattern="[0-9]{10,11}"
+                                            title="Số điện thoại chỉ được chứa số và có độ dài 10-11 chữ số"
+                                            required="true" />
+                                        <form:errors path="phone" cssClass="error" />
+                                        <span id="phoneError" class="error">Số điện thoại chỉ được chứa số (10-11 chữ
+                                            số).</span>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Full Name</label>
-                                        <form:input type="text" class="form-control" path="fullName" />
+                                        <form:input type="text" class="form-control" path="fullName"
+                                            pattern="[A-Za-zÀ-ỹ\s]+"
+                                            title="Họ tên chỉ được chứa chữ cái và khoảng trắng (bao gồm ký tự tiếng Việt)"
+                                            required="true" />
+                                        <form:errors path="fullName" cssClass="error" />
+                                        <span id="fullNameError" class="error">Họ tên chỉ được chứa chữ cái và khoảng
+                                            trắng (bao gồm ký tự tiếng Việt).</span>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Address</label>
@@ -96,6 +117,54 @@
 
                 <!-- Template Javascript -->
                 <script src="/client/js/main.js"></script>
+
+                <!-- Custom JavaScript -->
+                <script>
+                    function validateForm() {
+                        const fullName = document.querySelector("input[name='fullName']").value;
+                        const phone = document.querySelector("input[name='phone']").value;
+                        const fullNameError = document.getElementById("fullNameError");
+                        const phoneError = document.getElementById("phoneError");
+                        let isValid = true;
+
+                        // Kiểm tra fullName (chỉ chữ và khoảng trắng, bao gồm ký tự tiếng Việt)
+                        if (!/^[A-Za-zÀ-ỹ\s]+$/.test(fullName)) {
+                            fullNameError.style.display = "block";
+                            isValid = false;
+                        } else {
+                            fullNameError.style.display = "none";
+                        }
+
+                        // Kiểm tra phone (chỉ số, 10-11 chữ số)
+                        if (!/^[0-9]{10,11}$/.test(phone)) {
+                            phoneError.style.display = "block";
+                            isValid = false;
+                        } else {
+                            phoneError.style.display = "none";
+                        }
+
+                        return isValid;
+                    }
+
+                    // Thêm sự kiện kiểm tra khi nhập liệu
+                    document.querySelector("input[name='fullName']").addEventListener("input", function () {
+                        const fullNameError = document.getElementById("fullNameError");
+                        if (!/^[A-Za-zÀ-ỹ\s]*$/.test(this.value)) {
+                            fullNameError.style.display = "block";
+                        } else {
+                            fullNameError.style.display = "none";
+                        }
+                    });
+
+                    document.querySelector("input[name='phone']").addEventListener("input", function () {
+                        const phoneError = document.getElementById("phoneError");
+                        if (!/^[0-9]{0,11}$/.test(this.value)) {
+                            phoneError.style.display = "block";
+                        } else {
+                            phoneError.style.display = "none";
+                        }
+                    });
+                </script>
             </body>
 
             </html>

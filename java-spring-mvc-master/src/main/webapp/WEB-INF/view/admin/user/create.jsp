@@ -25,8 +25,14 @@
               });
             });
           </script>
-
           <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+          <style>
+            .error {
+              color: red;
+              font-size: 0.9em;
+              display: none;
+            }
+          </style>
         </head>
 
         <body class="sb-nav-fixed">
@@ -38,18 +44,17 @@
                 <div class="container-fluid px-4">
                   <h1 class="mt-4">Manage User</h1>
                   <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"> <a href="/admin">Dashboard </a></li>
-                    <li class="breadcrumb-item active"><a href="/admin/user"> Users </a></li>
-                    <li class="breadcrumb-item active"><a href="/admin/user/create"> Create </a></li>
+                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                    <li class="breadcrumb-item active"><a href="/admin/user">Users</a></li>
+                    <li class="breadcrumb-item active"><a href="/admin/user/create">Create</a></li>
                   </ol>
                   <div class="mt-5">
                     <div class="row">
                       <div class="col-md-6 col-12 mx-auto">
-                        <h1> Create User</h1>
+                        <h1>Create User</h1>
                         <hr />
                         <form:form method="post" action="/admin/user/create" modelAttribute="newUser" class="row"
-                          enctype="multipart/form-data">
-
+                          enctype="multipart/form-data" onsubmit="return validateForm()">
                           <div class="mb-3 col-12 col-md-6">
                             <c:set var="errorEmail">
                               <form:errors path="email" cssClass="invalid-feedback" />
@@ -68,11 +73,12 @@
                               class="form-control ${not empty errorPassword ? 'is-invalid' : ''}" path="password" />
                             ${errorPassword}
                           </div>
-
-
                           <div class="mb-3 col-12 col-md-6">
                             <label class="form-label">Phone number</label>
-                            <form:input type="text" class="form-control" path="phone" />
+                            <form:input type="text" class="form-control" path="phone" pattern="[0-9]{10,11}"
+                              title="Phone number must contain only numbers and be 10-11 digits long" required="true" />
+                            <span id="phoneError" class="error">Phone number must contain only numbers (10-11
+                              digits).</span>
                           </div>
                           <div class="mb-3 col-12 col-md-6">
                             <c:set var="errorFullName">
@@ -80,16 +86,17 @@
                             </c:set>
                             <label class="form-label">Full Name</label>
                             <form:input type="text" class="form-control ${not empty errorFullName ? 'is-invalid' : ''}"
-                              path="fullName" />
+                              path="fullName" pattern="[A-Za-zÀ-ỹ\s]+"
+                              title="Full name must contain only letters and spaces (including Vietnamese characters)"
+                              required="true" />
                             ${errorFullName}
+                            <span id="nameError" class="error">Full name must contain only letters and spaces (including
+                              Vietnamese characters).</span>
                           </div>
-
-
                           <div class="mb-3 col-12">
                             <label class="form-label">Address</label>
                             <form:input type="text" class="form-control" path="address" />
                           </div>
-
                           <div class="mb-3 col-12 col-md-6">
                             <label class="form-label">Role</label>
                             <form:select class="form-select" path="role.name">
@@ -105,11 +112,9 @@
                           <div class="mb-3 col-12">
                             <img style="max-height: 250px; display: none;" id="avatarPreview" alt="Avatar preview">
                           </div>
-
                           <div class="mb-5 col-12">
                             <button type="submit" class="btn btn-primary">Create</button>
                           </div>
-
                         </form:form>
                       </div>
                     </div>
@@ -122,6 +127,52 @@
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             crossorigin="anonymous"></script>
           <script src="/js/scripts.js"></script>
+          <script>
+            function validateForm() {
+              const phone = document.querySelector("input[name='phone']").value;
+              const fullName = document.querySelector("input[name='fullName']").value;
+              const phoneError = document.getElementById("phoneError");
+              const nameError = document.getElementById("nameError");
+              let isValid = true;
+
+              // Kiểm tra phone (chỉ số, 10-11 chữ số)
+              if (!/^[0-9]{10,11}$/.test(phone)) {
+                phoneError.style.display = "block";
+                isValid = false;
+              } else {
+                phoneError.style.display = "none";
+              }
+
+              // Kiểm tra fullName (chỉ chữ và khoảng trắng, bao gồm ký tự tiếng Việt)
+              if (!/^[A-Za-zÀ-ỹ\s]+$/.test(fullName)) {
+                nameError.style.display = "block";
+                isValid = false;
+              } else {
+                nameError.style.display = "none";
+              }
+
+              return isValid;
+            }
+
+            // Thêm sự kiện kiểm tra khi nhập liệu
+            document.querySelector("input[name='phone']").addEventListener("input", function () {
+              const phoneError = document.getElementById("phoneError");
+              if (!/^[0-9]{0,11}$/.test(this.value)) {
+                phoneError.style.display = "block";
+              } else {
+                phoneError.style.display = "none";
+              }
+            });
+
+            document.querySelector("input[name='fullName']").addEventListener("input", function () {
+              const nameError = document.getElementById("nameError");
+              if (!/^[A-Za-zÀ-ỹ\s]*$/.test(this.value)) {
+                nameError.style.display = "block";
+              } else {
+                nameError.style.display = "none";
+              }
+            });
+          </script>
         </body>
 
         </html>

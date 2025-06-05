@@ -33,12 +33,12 @@ public class Product {
 
   @NotNull
   @NotEmpty(message = "Mô tả chi tiết không được để trống")
-  @Column(name = "detail_description", columnDefinition = "MEDIUMTEXT")
+  @Column(name = "detail_desc", columnDefinition = "MEDIUMTEXT")
   private String detailDesc;
 
   @NotNull
   @NotEmpty(message = "Mô tả vắn tắt không được để trồng")
-  @Column(name = "short_description")
+  @Column(name = "short_desc")
   private String shortDesc;
 
   @NotNull

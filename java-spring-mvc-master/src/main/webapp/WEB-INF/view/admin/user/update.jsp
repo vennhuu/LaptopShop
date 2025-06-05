@@ -13,6 +13,13 @@
         <title>Update user</title>
         <link href="/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+          .error {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+          }
+        </style>
       </head>
 
       <body class="sb-nav-fixed">
@@ -24,16 +31,17 @@
               <div class="container-fluid px-4">
                 <h1 class="mt-4">Manage User</h1>
                 <ol class="breadcrumb mb-4">
-                  <li class="breadcrumb-item"> <a href="/admin">Dashboard </a></li>
-                  <li class="breadcrumb-item active"><a href="/admin/user"> Users </a></li>
-                  <li class="breadcrumb-item active"> Update</li>
+                  <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                  <li class="breadcrumb-item active"><a href="/admin/user">Users</a></li>
+                  <li class="breadcrumb-item active">Update</li>
                 </ol>
                 <div class="container mt-5">
                   <div class="row">
                     <div class="col-md-6 col-12 mx-auto">
-                      <h1> Update User</h1>
+                      <h1>Update User</h1>
                       <hr />
-                      <form:form method="post" action="/admin/user/update" modelAttribute="newUser">
+                      <form:form method="post" action="/admin/user/update" modelAttribute="newUser"
+                        onsubmit="return validateForm()">
                         <div class="mb-3" style="display: none;">
                           <label class="form-label">Id</label>
                           <form:input type="text" class="form-control" path="id" />
@@ -44,11 +52,17 @@
                         </div>
                         <div class="mb-3">
                           <label class="form-label">Phone number</label>
-                          <form:input type="text" class="form-control" path="phone" />
+                          <form:input type="text" class="form-control" path="phone" pattern="[0-9]{10,11}"
+                            title="Phone number must contain only numbers and be 10-11 digits long" required="true" />
+                          <span id="phoneError" class="error">Phone number must contain only numbers (10-11
+                            digits).</span>
                         </div>
                         <div class="mb-3">
                           <label class="form-label">Full Name</label>
-                          <form:input type="text" class="form-control" path="fullName" />
+                          <form:input type="text" class="form-control" path="fullName" pattern="[A-Za-zÀ-ỹ\s]+"
+                            title="Full name must contain only letters and spaces" required="true" />
+                          <span id="nameError" class="error">Full name must contain only letters and spaces (including
+                            Vietnamese characters).</span>
                         </div>
                         <div class="mb-3">
                           <label class="form-label">Address</label>
@@ -67,6 +81,52 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
           crossorigin="anonymous"></script>
         <script src="/js/scripts.js"></script>
+        <script>
+          function validateForm() {
+            const phone = document.querySelector("input[name='phone']").value;
+            const fullName = document.querySelector("input[name='fullName']").value;
+            const phoneError = document.getElementById("phoneError");
+            const nameError = document.getElementById("nameError");
+            let isValid = true;
+
+            // Kiểm tra phone (chỉ số, 10-11 chữ số)
+            if (!/^[0-9]{10,11}$/.test(phone)) {
+              phoneError.style.display = "block";
+              isValid = false;
+            } else {
+              phoneError.style.display = "none";
+            }
+
+            // Kiểm tra fullName (chỉ chữ và khoảng trắng, bao gồm ký tự tiếng Việt)
+            if (!/^[A-Za-zÀ-ỹ\s]+$/.test(fullName)) {
+              nameError.style.display = "block";
+              isValid = false;
+            } else {
+              nameError.style.display = "none";
+            }
+
+            return isValid;
+          }
+
+          // Thêm sự kiện kiểm tra khi nhập liệu
+          document.querySelector("input[name='phone']").addEventListener("input", function () {
+            const phoneError = document.getElementById("phoneError");
+            if (!/^[0-9]{0,11}$/.test(this.value)) {
+              phoneError.style.display = "block";
+            } else {
+              phoneError.style.display = "none";
+            }
+          });
+
+          document.querySelector("input[name='fullName']").addEventListener("input", function () {
+            const nameError = document.getElementById("nameError");
+            if (!/^[A-Za-zÀ-ỹ\s]*$/.test(this.value)) {
+              nameError.style.display = "block";
+            } else {
+              nameError.style.display = "none";
+            }
+          });
+        </script>
       </body>
 
       </html>

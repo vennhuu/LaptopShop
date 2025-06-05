@@ -128,16 +128,9 @@ public class Order {
         this.orderDetails = orderDetails;
     }
 
-    @Override
+   @Override
     public String toString() {
-      return "Order [id=" + id + ", orderNumber=" + orderNumber + ", date=" + date + ", totalPrice=" + totalPrice
-          + ", receiverName=" + receiverName + ", receiverAddress=" + receiverAddress + ", receiverPhone="
-          + receiverPhone + ", status=" + status + ", user=" + user + ", orderDetails=" + orderDetails
-          + ", getOrderNumber()=" + getOrderNumber() + ", getDate()=" + getDate() + ", getId()=" + getId()
-          + ", getTotalPrice()=" + getTotalPrice() + ", getClass()=" + getClass() + ", getReceiverName()="
-          + getReceiverName() + ", getReceiverAddress()=" + getReceiverAddress() + ", getReceiverPhone()="
-          + getReceiverPhone() + ", getStatus()=" + getStatus() + ", getUser()=" + getUser() + ", getOrderDetails()="
-          + getOrderDetails() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+        return "Order{id=" + id + ", receiverName='" + receiverName + "', totalPrice=" + totalPrice + "}";
     }
 
     
