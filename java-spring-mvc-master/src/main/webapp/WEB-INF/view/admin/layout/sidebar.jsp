@@ -5,6 +5,7 @@
         <div class="sb-sidenav-menu">
           <div class="nav">
             <div class="sb-sidenav-menu-heading">Features</div>
+
             <a class="nav-link" href="/admin">
               <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
               Dashboard
@@ -25,6 +26,12 @@
               Order
             </a>
 
+            <div class="sb-sidenav-menu-heading">Khác</div>
+
+            <a class="nav-link" href="/admin/cmtCus">
+              <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+              Feedback
+            </a>
           </div>
         </div>
         <div class="sb-sidenav-footer">

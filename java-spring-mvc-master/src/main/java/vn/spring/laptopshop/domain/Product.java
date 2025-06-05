@@ -1,11 +1,13 @@
 package vn.spring.laptopshop.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -31,11 +33,12 @@ public class Product {
 
   @NotNull
   @NotEmpty(message = "Mô tả chi tiết không được để trống")
-  @Column(columnDefinition = "MEDIUMTEXT")
+  @Column(name = "detail_description", columnDefinition = "MEDIUMTEXT")
   private String detailDesc;
 
   @NotNull
   @NotEmpty(message = "Mô tả vắn tắt không được để trồng")
+  @Column(name = "short_description")
   private String shortDesc;
 
   @NotNull
@@ -45,6 +48,10 @@ public class Product {
   private long sold;
   private String factory;
   private String target;
+
+  @OneToMany(mappedBy = "product")
+  private List<Feedback> feed;
+
 
   public long getId() {
     return id;
@@ -126,10 +133,24 @@ public class Product {
     this.target = target;
   }
 
+  public List<Feedback> getFeed() {
+    return feed;
+  }
+
+  public void setFeed(List<Feedback> feed) {
+    this.feed = feed;
+  }
+
   @Override
   public String toString() {
     return "Product [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image + ", detailDesc="
         + detailDesc + ", shortDesc=" + shortDesc + ", quantity=" + quantity + ", sold=" + sold + ", factory=" + factory
-        + ", target=" + target + "]";
+        + ", target=" + target + ", feed=" + feed + ", getId()=" + getId() + ", getName()=" + getName()
+        + ", getClass()=" + getClass() + ", getPrice()=" + getPrice() + ", getImage()=" + getImage()
+        + ", getDetailDesc()=" + getDetailDesc() + ", getShortDesc()=" + getShortDesc() + ", getQuantity()="
+        + getQuantity() + ", getSold()=" + getSold() + ", getFactory()=" + getFactory() + ", getTarget()=" + getTarget()
+        + ", getFeed()=" + getFeed() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
   }
+
+  
 }

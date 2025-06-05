@@ -6,9 +6,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import vn.spring.laptopshop.domain.Role;
 import vn.spring.laptopshop.domain.User;
 import vn.spring.laptopshop.domain.dto.RegisterDTO;
+import vn.spring.laptopshop.repository.CartDetailRepository;
+import vn.spring.laptopshop.repository.CartRepository;
+import vn.spring.laptopshop.repository.FeedbackRepository;
+import vn.spring.laptopshop.repository.OrderDetailRepository;
 import vn.spring.laptopshop.repository.OrderRepository;
 import vn.spring.laptopshop.repository.ProductRepository;
 import vn.spring.laptopshop.repository.RoleRepository;
@@ -20,15 +25,27 @@ public class UserService {
   private final RoleRepository roleRepository;
   private final OrderRepository orderRepository;
   private final ProductRepository productRepository;
+  private final CartRepository cartRepository ;
+  private final OrderDetailRepository orderDetailRepository ;
+  private final CartDetailRepository cartDetailRepository ;
+  private final FeedbackRepository feedbackRepository ;
 
   public UserService(UserRepository userRepository,
       RoleRepository roleRepository,
       OrderRepository orderRepository,
-      ProductRepository productRepository) {
+      ProductRepository productRepository,
+      CartRepository cartRepository,
+      OrderDetailRepository orderDetailRepository,
+      CartDetailRepository cartDetailRepository,
+      FeedbackRepository feedbackRepository) {
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
     this.orderRepository = orderRepository;
     this.productRepository = productRepository;
+    this.cartRepository = cartRepository ;
+    this.orderDetailRepository = orderDetailRepository ;
+    this.cartDetailRepository = cartDetailRepository ;
+    this.feedbackRepository = feedbackRepository ;
   }
 
   public List<User> getAllUsers() {
@@ -52,10 +69,32 @@ public class UserService {
     return eric;
   }
 
-  public void deleteUser(long id) {
-    this.userRepository.deleteById(id);
-  }
+ @Transactional
+    public void deleteUser(long id) {
+        // Xóa các chi tiết đơn hàng liên quan đến user (qua orders)
+        List<Long> orderIds = orderRepository.findAllOrderIdsByUserId(id);
+        for (Long orderId : orderIds) {
+            orderDetailRepository.deleteByOrderId(orderId);
+        }
 
+        // Xóa các chi tiết giỏ hàng liên quan đến user (qua carts)
+        List<Long> cartIds = cartRepository.findAllCartIdsByUserId(id);
+        for (Long cartId : cartIds) {
+            cartDetailRepository.deleteByCartId(cartId);
+        }
+
+        // Xóa các giỏ hàng liên quan đến user
+        cartRepository.deleteByUserId(id);
+
+        // Xóa đơn hàng
+        orderRepository.deleteByUserId(id);
+
+        // Xóa feedback liên quan đến user
+        feedbackRepository.deleteByUserId(id);
+
+        // Sau đó xóa user
+        userRepository.deleteById(id);
+    }
   public Role getRoleByName(String name) {
     return this.roleRepository.findByName(name);
   }
@@ -89,4 +128,7 @@ public class UserService {
     return this.orderRepository.count();
   }
 
+  public User findUserByEmail(String email) {
+    return this.userRepository.findByEmail(email) ;
+  }
 }

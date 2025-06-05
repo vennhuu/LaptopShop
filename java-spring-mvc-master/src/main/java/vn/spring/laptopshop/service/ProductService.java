@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import vn.spring.laptopshop.Specs.ProductSpecs;
 import vn.spring.laptopshop.domain.Cart;
 import vn.spring.laptopshop.domain.CartDetail;
@@ -20,6 +21,7 @@ import vn.spring.laptopshop.domain.User;
 import vn.spring.laptopshop.domain.dto.ProductCriteriaDTO;
 import vn.spring.laptopshop.repository.CartDetailRepository;
 import vn.spring.laptopshop.repository.CartRepository;
+import vn.spring.laptopshop.repository.FeedbackRepository;
 import vn.spring.laptopshop.repository.OrderDetailRepository;
 import vn.spring.laptopshop.repository.OrderRepository;
 import vn.spring.laptopshop.repository.ProductRepository;
@@ -32,19 +34,22 @@ public class ProductService {
   private final UserService userService;
   private final OrderRepository orderRepository;
   private final OrderDetailRepository orderDetailRepository;
+  private final FeedbackRepository feedbackRepository ;
 
   public ProductService(ProductRepository productRepository,
       CartRepository cartRepository,
       CartDetailRepository cartDetailRepository,
       UserService userService,
       OrderRepository orderRepository,
-      OrderDetailRepository orderDetailRepository) {
+      OrderDetailRepository orderDetailRepository,
+      FeedbackRepository feedbackRepository ) {
     this.productRepository = productRepository;
     this.cartRepository = cartRepository;
     this.cartDetailRepository = cartDetailRepository;
     this.userService = userService;
     this.orderRepository = orderRepository;
     this.orderDetailRepository = orderDetailRepository;
+    this.feedbackRepository = feedbackRepository ;
   }
 
   public List<Product> getAllProducts() {
@@ -167,9 +172,17 @@ public class ProductService {
     return this.productRepository.save(product);
   }
 
-  public void deleteProduct(long id) {
-    this.productRepository.deleteById(id);
-  }
+  @Transactional // Thêm annotation này
+    public void deleteProduct(long id) {
+        // Xóa các phản hồi liên quan
+        feedbackRepository.deleteByProductId(id);
+        // Xóa các bản ghi trong cart_detail liên quan
+        cartDetailRepository.deleteByProductId(id);
+        // Xóa các bản ghi trong order_detail liên quan
+        orderDetailRepository.deleteByProductId(id);
+        // Sau đó xóa sản phẩm
+        productRepository.deleteById(id);
+    }
 
   public void handleAddProductToCart(String email, long productId, HttpSession session) {
     User user = this.userService.getUserByEmail(email);

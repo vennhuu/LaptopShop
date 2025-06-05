@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.Valid;
 import vn.spring.laptopshop.domain.Product;
+import vn.spring.laptopshop.service.FeedbackService;
 import vn.spring.laptopshop.service.ProductService;
 import vn.spring.laptopshop.service.UploadService;
 
@@ -26,10 +27,12 @@ import vn.spring.laptopshop.service.UploadService;
 public class ProductController {
   private final ProductService productService;
   private final UploadService uploadService;
+  private final FeedbackService feedbackService ;
 
-  public ProductController(ProductService productService, UploadService uploadService) {
+  public ProductController(ProductService productService, UploadService uploadService , FeedbackService feedbackService ) {
     this.productService = productService;
     this.uploadService = uploadService;
+    this.feedbackService = feedbackService ;
   }
 
   @RequestMapping("/admin/product")
@@ -76,40 +79,45 @@ public class ProductController {
 
   @RequestMapping("/admin/product/update/{id}")
   public String getUpdateProductDetailPage(Model model, @PathVariable long id) {
-    Optional<Product> currentProduct = this.productService.getProductById(id);
-    model.addAttribute("newProduct", currentProduct.get());
-    return "admin/product/update";
-  }
+        Optional<Product> currentProduct = this.productService.getProductById(id);
+        if (currentProduct.isPresent()) {
+            model.addAttribute("newProduct", currentProduct.get());
+        } else {
+            model.addAttribute("newProduct", new Product());
+        }
+        return "admin/product/update";
+    }
 
   @PostMapping("/admin/product/update")
   public String postUpdateUser(Model model, @ModelAttribute("newProduct") @Valid Product product,
       BindingResult newProductBindingResult, @RequestParam("springFile") MultipartFile file) {
+        if (newProductBindingResult.hasErrors()) {
+          model.addAttribute("newProduct", product); // Truyền lại dữ liệu đã nhập
+          return "admin/product/update";
+        }
 
-    // Validate
-    if (newProductBindingResult.hasErrors()) {
-      return "/admin/product/update";
+      Optional<Product> currentProductOptional = this.productService.getProductById(product.getId());
+        if (currentProductOptional.isPresent()) {
+            Product currentProduct = currentProductOptional.get();
+            if (!file.isEmpty()) {
+                String image = this.uploadService.handleSaveUploadFile(file, "product");
+                currentProduct.setImage(image);
+            }
+            currentProduct.setName(product.getName());
+            currentProduct.setPrice(product.getPrice());
+            currentProduct.setDetailDesc(product.getDetailDesc());
+            currentProduct.setShortDesc(product.getShortDesc());
+            currentProduct.setQuantity(product.getQuantity());
+            currentProduct.setFactory(product.getFactory());
+            currentProduct.setTarget(product.getTarget());
+
+            this.productService.createProduct(currentProduct);
+        } else {
+            model.addAttribute("error", "Product not found");
+            return "admin/product/update";
+        }
+        return "redirect:/admin/product";
     }
-
-    Product currentProduct = this.productService.getProductById(product.getId()).get();
-
-    if (currentProduct != null) {
-      // update new image
-      if (!file.isEmpty()) {
-        String image = this.uploadService.handleSaveUploadFile(file, "product");
-        currentProduct.setImage(image);
-      }
-      currentProduct.setName(product.getName());
-      currentProduct.setPrice(product.getPrice());
-      currentProduct.setDetailDesc(product.getDetailDesc());
-      currentProduct.setShortDesc(product.getShortDesc());
-      currentProduct.setQuantity(product.getQuantity());
-      currentProduct.setFactory(product.getFactory());
-      currentProduct.setTarget(product.getTarget());
-
-      this.productService.createProduct(currentProduct);
-    }
-    return "redirect:/admin/product";
-  }
 
   @GetMapping("/admin/product/delete/{id}")
   public String getDeleteProductPage(Model model, @PathVariable long id) {

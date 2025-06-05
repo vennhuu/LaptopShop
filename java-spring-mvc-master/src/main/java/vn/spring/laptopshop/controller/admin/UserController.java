@@ -19,22 +19,25 @@ import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.Valid;
 import vn.spring.laptopshop.domain.User;
+import vn.spring.laptopshop.service.OrderService;
 import vn.spring.laptopshop.service.UploadService;
 import vn.spring.laptopshop.service.UserService;
 
 @Controller
 public class UserController {
 
+  private final OrderService orderService;
   private final UserService userService;
   private final UploadService uploadService;
   private final PasswordEncoder passwordEncoder;
 
   public UserController(UserService userService,
       UploadService uploadService,
-      PasswordEncoder passwordEncoder) {
+      PasswordEncoder passwordEncoder, OrderService orderService) {
     this.userService = userService;
     this.uploadService = uploadService;
     this.passwordEncoder = passwordEncoder;
+    this.orderService = orderService;
   }
 
   @RequestMapping("/")

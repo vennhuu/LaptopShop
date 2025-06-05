@@ -54,6 +54,10 @@
                         <hr />
                         <form:form method="post" action="/admin/product/update" modelAttribute="newProduct" class="row"
                           enctype="multipart/form-data">
+                          <!-- Thêm CSRF token -->
+                          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                          <!-- Thêm hidden input cho id -->
+                          <form:hidden path="id" />
 
                           <div class="mb-3 col-12 col-md-6">
                             <c:set var="errorName">
@@ -70,7 +74,7 @@
                             </c:set>
                             <label class="form-label">Price</label>
                             <form:input type="number" class="form-control ${not empty errorPrice ? 'is-invalid' : ''}"
-                              path="price" />
+                              path="price" step="0.01" />
                             ${errorPrice}
                           </div>
 
@@ -94,16 +98,16 @@
                               path="shortDesc" />
                             ${errorShortDesc}
                           </div>
+
                           <div class="mb-3 col-12 col-md-6">
                             <c:set var="errorQuantity">
                               <form:errors path="quantity" cssClass="invalid-feedback" />
                             </c:set>
                             <label class="form-label">Quantity</label>
-                            <form:input type="text" class="form-control ${not empty errorQuantity ? 'is-invalid' : ''}"
-                              path="quantity" />
+                            <form:input type="number"
+                              class="form-control ${not empty errorQuantity ? 'is-invalid' : ''}" path="quantity" />
                             ${errorQuantity}
                           </div>
-
 
                           <div class="mb-3 col-12 col-md-6">
                             <label class="form-label">Factory</label>
