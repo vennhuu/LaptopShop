@@ -160,7 +160,7 @@
 
 .dropdown .dropdown-menu a:hover {
   background: var(--bs-secondary);
-  color: var(--bs-primary);
+  color: #FFFFFF;
 }
 
 .navbar .nav-item:hover .dropdown-menu {

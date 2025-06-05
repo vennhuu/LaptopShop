@@ -6,8 +6,8 @@
       <div class="container py-5">
         <div class="row g-5 align-items-center">
           <div class="col-md-12 col-lg-7">
-            <h4 class="mb-3 text-secondary">100% sản phẩm chính hãng</h4>
-            <h1 class="mb-5 display-3 text-primary">Hàng cao cấp <br /> Rẻ vô địch</h1>
+            <h4 class="mb-3 text-secondary"><b>Cam kết chính hãng</b></h4>
+            <h1 class="mb-5 display-3 text-primary"> Hàng chất xịn <br /> Giá siêu tốt </h1>
           </div>
           <div class="col-md-12 col-lg-5">
             <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
@@ -15,15 +15,15 @@
                 <div class="carousel-item active rounded">
                   <img src="/client/img/hero-img-1.png" class="img-fluid w-100 h-100 bg-secondary rounded"
                     alt="First slide">
-                  <a href="#" class="btn px-4 py-2 text-white rounded">Gaming</a>
+                  <a href="#" class="btn px-4 py-2 text-white rounded">ASUS</a>
                 </div>
                 <div class="carousel-item rounded">
                   <img src="/client/img/hero-img-3.png" class="img-fluid w-100 h-100 rounded" alt="Second slide">
-                  <a href="#" class="btn px-4 py-2 text-white rounded">Laptop</a>
+                  <a href="#" class="btn px-4 py-2 text-white rounded">ACER</a>
                 </div>
                 <div class="carousel-item rounded">
                   <img src="/client/img/hero-img-2.png" class="img-fluid w-100 h-100 rounded" alt="Second slide">
-                  <a href="#" class="btn px-4 py-2 text-white rounded">Phụ kiện</a>
+                  <a href="#" class="btn px-4 py-2 text-white rounded">MACBOOK</a>
                 </div>
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">

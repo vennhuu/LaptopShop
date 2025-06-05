@@ -31,6 +31,10 @@
           <!-- Template Stylesheet -->
           <link href="/client/css/style.css" rel="stylesheet">
           <style>
+            body {
+              background-color: #FFEAEA;
+            }
+
             .product-img {
               height: 250px;
               object-fit: cover;

@@ -1,5 +1,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <style>
+      /* Hover màu đỏ cho nav-link */
+      .sb-sidenav .nav-link:hover {
+        background-color: #e53935 !important;
+        /* đỏ tươi */
+        color: white !important;
+      }
+
+      .sb-sidenav .nav-link:hover .sb-nav-link-icon i {
+        color: white !important;
+      }
+    </style>
     <div id="layoutSidenav_nav">
       <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">

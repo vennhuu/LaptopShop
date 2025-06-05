@@ -37,6 +37,10 @@
                             object-fit: cover;
                             object-position: center;
                         }
+
+                        body {
+                            background-color: #FFEAEA;
+                        }
                     </style>
                 </head>
 
