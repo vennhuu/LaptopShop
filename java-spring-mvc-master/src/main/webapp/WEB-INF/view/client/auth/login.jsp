@@ -119,7 +119,7 @@
 
                         <p class="text-center text-muted mt-5 mb-0">
                           Chưa có tài khoản ?
-                          <a href="/register" class="fw-bold text-body"><u>Đăng kí</u></a>
+                          <a href="/register" class="fw-bold text-body"><u>Đăng ký</u></a>
                         </p>
 
                     </div>
