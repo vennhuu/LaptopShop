@@ -66,10 +66,10 @@
                 <div class="container-fluid py-5">
                     <div class="container py-5" style="margin-top: 20px;">
                         <h2 class="text-center">Chi tiết đơn hàng</h2>
-                        <p style="margin-top: 16px;">Order Number: ${order.orderNumber}</p>
+                        <p style="margin-top: 16px;">ID đơn hàng : ${order.id}</p>
                         <p>Trạng Thái: ${order.status}</p>
-                        <p>Ngày Đặt Mua :
-                            <fmt:formatDate value="${order.date}" pattern="dd/MM/yyyy HH:mm:ss" />
+                        <p>Tổng tiền
+                            <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
                         </p>
 
                         <div class="table-responsive" style="margin-top: 32px;">

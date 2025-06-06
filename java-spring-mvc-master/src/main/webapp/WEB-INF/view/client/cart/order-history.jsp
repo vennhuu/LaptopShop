@@ -53,7 +53,7 @@
                         <div class="mb-3">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Lịch sử mua hàng</li>
                                 </ol>
                             </nav>
@@ -63,9 +63,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Order Number</th>
+                                        <th scope="col">ID đơn hàng</th>
                                         <th scope="col">Trạng Thái</th>
-                                        <th scope="col">Ngày đặt hàng</th>
+                                        <th scope="col">Tổng tiền</th>
                                         <th scope="col">Xem thêm chi tiết</th>
                                     </tr>
                                 </thead>
@@ -79,13 +79,12 @@
                                     </c:if>
                                     <c:forEach var="order" items="${orders}">
                                         <tr>
-                                            <td colspan="1">${order.orderNumber}</td>
+                                            <td colspan="1">${order.id}</td>
                                             <td colspan="1">
                                                 ${order.status}
                                             </td>
-                                            <td colspan="1">
-                                                <!-- Hiển thị ngày đặt hàng -->
-                                                <fmt:formatDate value="${order.date}" pattern="dd/MM/yyyy" />
+                                            <td>
+                                                <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
                                             </td>
                                             <td colspan="1">
                                                 <a href="/order-history/${order.id}" class="btn btn-primary">Xem chi
