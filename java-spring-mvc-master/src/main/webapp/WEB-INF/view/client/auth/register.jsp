@@ -76,7 +76,7 @@
                 <div class="col-md-9 col-lg-7 col-xl-6">
                   <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
-                      <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                      <h2 class="text-uppercase text-center mb-5">Tạo tài khoản</h2>
                       <form:form method="post" action="/register" modelAttribute="registerUser">
                         <c:set var="errorPassword">
                           <form:errors path="confirmPassword" cssClass="invalid-feedback" />
@@ -89,7 +89,7 @@
                         </c:set>
                         <!-- First Name -->
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="form3Example1cg">First Name</label>
+                          <label class="form-label" for="form3Example1cg">Họ</label>
                           <form:input type="text" id="form3Example1cg"
                             class="form-control ${not empty errorFirstName ? 'is-invalid' : ''}" path="firstName" />
                           ${errorFirstName}
@@ -97,14 +97,14 @@
 
                         <!-- Last Name -->
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="form3Example1cg">Last Name</label>
+                          <label class="form-label" for="form3Example1cg">Tên</label>
                           <form:input type="text" id="form3Example1cg" class="form-control form-control-lg"
                             path="lastName" />
                         </div>
 
                         <!-- Email -->
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="form3Example3cg">Your Email</label>
+                          <label class="form-label" for="form3Example3cg">Email</label>
                           <form:input type="email" id="form3Example3cg"
                             class="form-control ${not empty errorEmail ? 'is-invalid' : ''}" path="email" />
                           ${errorEmail}
@@ -112,7 +112,7 @@
 
                         <!-- Password -->
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="form3Example4cg">Password</label>
+                          <label class="form-label" for="form3Example4cg">Mật khẩu</label>
                           <form:input type="password" id="form3Example4cg"
                             class="form-control ${not empty errorPassword ? 'is-invalid' : ''}" path="password" />
                           ${errorPassword}
@@ -121,8 +121,7 @@
 
                         <!-- Confirm Password -->
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="form3Example4cdg">Repeat your
-                            password</label>
+                          <label class="form-label" for="form3Example4cdg">Nhập lại mật khẩu</label>
                           <form:input type="password" id="form3Example4cdg" class="form-control form-control-lg"
                             path="confirmPassword" />
                         </div>
@@ -132,13 +131,13 @@
                         <div class="d-flex justify-content-center">
                           <button type="submit"
                             class="btn btn-success btn-block btn-lg gradient-custom-4 text-body btn-custom">
-                            Register
+                            Đăng kí
                           </button>
                         </div>
 
                         <p class="text-center text-muted mt-5 mb-0">
-                          Have already an account?
-                          <a href="/login" class="fw-bold text-body"><u>Login here</u></a>
+                          Đã có tài khoản ?
+                          <a href="/login" class="fw-bold text-body"><u>Đăng nhập</u></a>
                         </p>
                       </form:form>
                     </div>

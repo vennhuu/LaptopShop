@@ -6,7 +6,7 @@
       <div class="container py-5">
         <div class="row g-5 align-items-center">
           <div class="col-md-12 col-lg-7">
-            <h4 class="mb-3 text-secondary"><b>Cam kết chính hãng</b></h4>
+            <h4 class="mb-3 text-secondary"><b>Cam kết chính hãng 100%</b></h4>
             <h1 class="mb-5 display-3 text-primary"> Hàng chất xịn <br /> Giá siêu tốt </h1>
           </div>
           <div class="col-md-12 col-lg-5">

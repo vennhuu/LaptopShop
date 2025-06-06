@@ -79,27 +79,27 @@
                 <div class="col-md-9 col-lg-7 col-xl-6">
                   <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
-                      <h2 class="text-uppercase text-center mb-5">Login</h2>
+                      <h2 class="text-uppercase text-center mb-5">Đăng nhập</h2>
                       <form method="post" action="/login">
                         <c:if test="${param.error != null}">
-                          <div class="my-2" style="color: red;">Invalid email or password.
+                          <div class="my-2" style="color: red;">Sai email hoặc mật khẩu.
                           </div>
                         </c:if>
                         <c:if test="${param.logout != null}">
-                          <div class="my-2" style="color: green;">Logout success.
+                          <div class="my-2" style="color: green;">Đăng xuất thành công.
                           </div>
                         </c:if>
 
                         <!-- Email -->
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="form3Example3cg">Your Email</label>
+                          <label class="form-label" for="form3Example3cg">Email</label>
                           <input type="email" id="form3Example3cg" class="form-control" name="username" path="email" />
 
                         </div>
 
                         <!-- Password -->
                         <div class="form-outline mb-4">
-                          <label class="form-label" for="form3Example4cg">Password</label>
+                          <label class="form-label" for="form3Example4cg">Mật khẩu</label>
                           <input type="password" id="form3Example4cg" class="form-control" name="password"
                             path="password" />
                         </div>
@@ -119,8 +119,7 @@
 
                         <p class="text-center text-muted mt-5 mb-0">
                           Chưa có tài khoản ?
-                          <a href="/register" class="fw-bold text-body"><u>Register
-                              here</u></a>
+                          <a href="/register" class="fw-bold text-body"><u>Đăng kí</u></a>
                         </p>
 
                     </div>
