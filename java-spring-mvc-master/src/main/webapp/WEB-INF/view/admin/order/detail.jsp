@@ -45,6 +45,44 @@
                           <table class="table">
                             <thead>
                               <tr>
+                                <th scope="col">Thông tin</th>
+                                <th scope="col">Giá trị</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="table-success">
+                                <th scope="row">Id:</th>
+                                <td>${order.id}</td>
+                              </tr>
+                              <tr class="table-success">
+                                <th scope="row">Tổng giá trị</th>
+                                <td>
+                                  <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
+                                </td>
+
+                              </tr>
+                              <tr class="table-danger">
+                                <th scope="row">Tên khách hàng</th>
+                                <td>${order.receiverName}</td>
+                              </tr>
+                              <tr class="table-warning">
+                                <th scope="row">Địa chỉ giao</th>
+                                <td>${order.receiverAddress}</td>
+                              </tr>
+                              <tr class="table-info">
+                                <th scope="row">Số điện thoại </th>
+                                <td>${order.receiverPhone}</td>
+                              </tr>
+
+                              <tr class="table-info">
+                                <th scope="row">Trạng thái </th>
+                                <td>${order.status}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table class="table">
+                            <thead>
+                              <tr>
                                 <th scope="col">Sản phẩm</th>
                                 <th scope="col">Tên</th>
                                 <th scope="col">Giá cả</th>

@@ -1,5 +1,6 @@
 package vn.spring.laptopshop.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -286,6 +287,7 @@ public class ProductService {
         order.setReceiverAddress(receiverAddress);
         order.setReceiverPhone(receiverPhone);
         order.setStatus("PENDING");
+        order.setDateOrder(new Date()) ;
 
         double sum = 0;
         for (CartDetail cd : cartDetails) {

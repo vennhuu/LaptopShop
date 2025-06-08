@@ -22,11 +22,9 @@ public class Order {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-    private String orderNumber; // New field: orderNumber
-
     @Column(name = "order_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date; // New field: date
+    private Date dateOrder; // New field: date
 
     private double totalPrice;
 
@@ -46,23 +44,8 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
 
-    // Getter and Setter for orderNumber
-    public String getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(String orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
     // Getter and Setter for date
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    
 
     public long getId() {
         return id;
@@ -132,6 +115,14 @@ public class Order {
     public String toString() {
         return "Order{id=" + id + ", receiverName='" + receiverName + "', totalPrice=" + totalPrice + "}";
     }
+
+   public Date getDateOrder() {
+    return dateOrder;
+   }
+
+   public void setDateOrder(Date dateOrder) {
+    this.dateOrder = dateOrder;
+   }
 
     
 }

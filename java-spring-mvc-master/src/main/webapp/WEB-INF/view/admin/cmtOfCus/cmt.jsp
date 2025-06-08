@@ -38,17 +38,17 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Id khách hàng</th>
-                                                    <th scope="col">Tên khách hàng</th> <!-- Thay bằng email -->
-                                                    <th scope="col">Sản phẩm đã mua</th>
-                                                    <th scope="col">Bình luận</th>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Name</th> <!-- Thay bằng email -->
+                                                    <th scope="col">Name Product</th>
+                                                    <th scope="col">Comment</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <c:forEach var="feed" items="${feeds}">
                                                     <tr>
                                                         <th scope="row">${feed.user.id}</th>
-                                                        <td>${feed.user.email}</td>
+                                                        <td>${feed.user.fullName}</td>
                                                         <!-- Sử dụng email thay vì fullname -->
                                                         <td style="font-size: 17px;">${feed.product.name}</td>
                                                         <td>${feed.content}</td>

@@ -37,6 +37,10 @@ public class OrderService {
     return this.orderRepository.findById(id);
   }
 
+  // public Order findOrderById( long id ) {
+  //   return this.orderRepository.findById(id) ;
+  // }
+
   public void deleteOrderById(long id) {
     // delete order detail first
     Optional<Order> orOptional = this.getOrderById(id);
