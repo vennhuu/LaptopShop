@@ -60,6 +60,10 @@
                                   <a href="/admin/order/${order.id}" class="btn btn-success">View</a>
                                   <a href="/admin/order/update/${order.id}" class="btn btn-warning">Update</a>
                                   <a href="/admin/order/delete/${order.id}" class="btn btn-danger">Delete</a>
+                                  <c:if test="${order.status == 'COMPLETE'}">
+                                    <a href="/admin/order/print-invoice/${order.id}" class="btn btn-primary">Send
+                                      Invoice</a>
+                                  </c:if>
                                 </td>
                               </tr>
                             </c:forEach>

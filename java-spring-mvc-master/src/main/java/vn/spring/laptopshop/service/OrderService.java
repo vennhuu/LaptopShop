@@ -7,6 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.itextpdf.io.source.ByteArrayOutputStream;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.UnitValue;
+
 import vn.spring.laptopshop.domain.Order;
 import vn.spring.laptopshop.domain.OrderDetail;
 import vn.spring.laptopshop.domain.User;
@@ -29,6 +37,7 @@ public class OrderService {
   public Page<Order> fetchOrders(Pageable page){
     return this.orderRepository.findAll(page) ;
   }
+  
   public List<Order> getAllOrders() {
     return this.orderRepository.findAll();
   }
@@ -80,4 +89,45 @@ public class OrderService {
         return this.orderRepository.findByUser(user);
     }
 
+    public ByteArrayOutputStream generateInvoicePDF(Order order) throws Exception {
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PdfWriter writer = new PdfWriter(baos);
+    PdfDocument pdf = new PdfDocument(writer);
+    Document document = new Document(pdf);
+
+    // Adding title
+    document.add(new Paragraph("Invoice #" + order.getId())
+        .setFontSize(20)
+        .setBold());
+
+    // Customer information
+    document.add(new Paragraph("Customer: " + order.getUser().getFullName()));
+    document.add(new Paragraph("Email: " + order.getUser().getEmail()));
+    document.add(new Paragraph("Order Date: " + order.getDateOrder()));
+
+    // Order details table
+    Table table = new Table(UnitValue.createPercentArray(new float[] { 50, 20, 30 }));
+    table.setWidth(UnitValue.createPercentValue(100));
+
+    // Table headers
+    table.addHeaderCell("Product");
+    table.addHeaderCell("Quantity");
+    table.addHeaderCell("Price");
+
+    // Table content
+    for (OrderDetail detail : order.getOrderDetails()) {
+      table.addCell(detail.getProduct().getName());
+      table.addCell(String.valueOf(detail.getQuantity()));
+      table.addCell(String.format("$%.2f", detail.getPrice()));
+    }
+
+    document.add(table);
+
+    // Total amount
+    document.add(new Paragraph("Total Amount: $" + String.format("%.2f", order.getTotalPrice()))
+        .setBold());
+
+    document.close();
+    return baos;
+  }
 }

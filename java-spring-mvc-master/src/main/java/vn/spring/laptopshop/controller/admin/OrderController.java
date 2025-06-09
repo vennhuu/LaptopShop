@@ -15,17 +15,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itextpdf.io.source.ByteArrayOutputStream;
+
 import vn.spring.laptopshop.domain.Order;
+import vn.spring.laptopshop.service.EmailService;
 import vn.spring.laptopshop.service.OrderService;
 
 @Controller  
 public class OrderController {
 
   private final OrderService orderService;
+  private final EmailService emailService ;
 
-
-  public OrderController(OrderService orderService) {
+  public OrderController(OrderService orderService , EmailService emailService) {
     this.orderService = orderService;
+    this.emailService = emailService;
   }
 
   @GetMapping("/admin/order")
@@ -39,7 +43,6 @@ public class OrderController {
     return "admin/order/show"; 
   }
 
-
   @GetMapping("/admin/order/{id}")
   public String getOrderDetailPage(Model model, @PathVariable long id) {
     Order order = this.orderService.getOrderById(id).get(); 
@@ -48,7 +51,6 @@ public class OrderController {
     model.addAttribute("orderDetails", order.getOrderDetails()); 
     return "admin/order/detail"; 
   }
-
 
   @RequestMapping("/admin/order/update/{id}")
   public String getUpdateOrderStatusPage(Model model, @PathVariable long id) {
@@ -63,7 +65,6 @@ public class OrderController {
     return "redirect:/admin/order"; 
   }
 
-
   @GetMapping("/admin/order/delete/{id}")
   public String getDeleteOrderPage(Model model, @PathVariable long id) {
     model.addAttribute("id", id);
@@ -76,5 +77,26 @@ public class OrderController {
   public String postDeleteOrder(@ModelAttribute("newOrder") Order order) {
     this.orderService.deleteOrderById(order.getId()); 
     return "redirect:/admin/order"; 
+  }
+  
+  // CONTROLLER ĐỂ KIỂM TRA TRẠNG THÁI, NẾU ĐÚNG TT THÌ GỌI generateInvoicePDF ĐỂ
+  // TẠO PDF TRƯỚC RỒI SỬ DỤNG ADDATACHMENT Ở TRONG EMAILSERVICES ĐÍNH KÈM FILE
+  // PDF NÀY GỬI MAIL
+  @GetMapping("/admin/order/print-invoice/{id}")
+  public String printInvoice(@PathVariable long id) {
+    Optional<Order> orderOptional = this.orderService.getOrderById(id);
+    if (orderOptional.isPresent()) {
+      Order order = orderOptional.get();
+      if ("COMPLETE".equals(order.getStatus())) {
+        try {
+          ByteArrayOutputStream pdfStream = orderService.generateInvoicePDF(order);
+          emailService.sendInvoiceEmail(order, pdfStream.toByteArray());
+        } catch (Exception e) {
+          e.printStackTrace();
+        } // ==> Ở SHOW JSP CÓ DÒNG KIỂM TRA TRẠNG THÁI ĐƠN HÀNG NẾU TRẠNG THÁI ĐÚNG THÌ
+          // HIỆN BUTTON
+      }
+    }
+    return "redirect:/admin/order/" + id;
   }
 }
