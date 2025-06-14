@@ -39,8 +39,6 @@
                           <h3> Order detail ID = ${id}</h3>
                         </div>
                         <hr />
-
-
                         <div class="table-responsive">
                           <table class="table">
                             <thead>
@@ -59,11 +57,14 @@
                                 <td>
                                   <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
                                 </td>
-
                               </tr>
                               <tr class="table-danger">
                                 <th scope="row">Tên khách hàng</th>
                                 <td>${order.receiverName}</td>
+                              </tr>
+                              <tr class="table-danger">
+                                <th scope="row">Email</th>
+                                <td>${order.user.email}</td>
                               </tr>
                               <tr class="table-warning">
                                 <th scope="row">Địa chỉ giao</th>
@@ -73,7 +74,6 @@
                                 <th scope="row">Số điện thoại </th>
                                 <td>${order.receiverPhone}</td>
                               </tr>
-
                               <tr class="table-info">
                                 <th scope="row">Trạng thái </th>
                                 <td>${order.status}</td>

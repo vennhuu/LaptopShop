@@ -52,7 +52,7 @@ public class ItemController {
   }
 
   @GetMapping("/product/{id}")
-public String getProductPage(Model model, @PathVariable long id) {
+  public String getProductPage(Model model, @PathVariable long id) {
     Product product = this.productService.getProductById(id).orElse(null);
     if (product == null) {
         return "redirect:/";
@@ -165,21 +165,6 @@ public String getProductPage(Model model, @PathVariable long id) {
   public String getThankYouPage(Model model) {
     return "client/cart/thanks";
   }
-  // @GetMapping("/order-history")
-  // public String getUserOrderHistory(Model model, HttpServletRequest request) {
-  //     HttpSession session = request.getSession(false);
-  //     if (session == null || session.getAttribute("id") == null) {
-  //         return "redirect:/login"; // hoặc xử lý lỗi
-  //     }
-
-  //     long userId = (long) session.getAttribute("id");
-  //     User user = new User();
-  //     user.setId(userId);
-
-  //     List<Order> userOrders = this.orderService.getOrderByUser(user);
-  //     model.addAttribute("orders", userOrders);
-  //     return "client/auth/history";
-  // }
 
   @GetMapping("/products")
     public String getProductPage(Model model,

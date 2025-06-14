@@ -65,7 +65,7 @@
                                     <tr>
                                         <th scope="col">ID đơn hàng</th>
                                         <th scope="col">Trạng Thái</th>
-                                        <th scope="col">Tổng tiền</th>
+                                        <th scope="col">Ngày đặt hàng</th>
                                         <th scope="col">Xem thêm chi tiết</th>
                                     </tr>
                                 </thead>
@@ -83,53 +83,15 @@
                                             <td colspan="1">
                                                 ${order.status}
                                             </td>
-                                            <td>
+                                            <!-- <td>
                                                 <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
-                                            </td>
+                                            </td> -->
+                                            <td colspan="1">${order.dateOrder}</td>
                                             <td colspan="1">
                                                 <a href="/order-history/${order.id}" class="btn btn-primary">Xem chi
                                                     tiết</a>
                                             </td>
                                         </tr>
-                                        <!-- <c:forEach var="orderDetail" items="${order.orderDetails}">
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="d-flex align-items-center">
-                                                        <img src="/images/product/${orderDetail.product.image}"
-                                                            class="img-fluid me-5 rounded-circle"
-                                                            style="width: 80px; height: 80px;" alt="">
-                                                    </div>
-                                                </th>
-                                                <td>
-                                                    <p class="mb-0 mt-4">
-                                                        <a href="/product/${orderDetail.product.id}" target="_blank">
-                                                            ${orderDetail.product.name}
-                                                        </a>
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <p class="mb-0 mt-4">
-                                                        <fmt:formatNumber type="number" value="${orderDetail.price}" />
-                                                        đ
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                                        <input type="text"
-                                                            class="form-control form-control-sm text-center border-0"
-                                                            value="${orderDetail.quantity}">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <p class="mb-0 mt-4" data-cart-detail-id="${cartDetail.id}">
-                                                        <fmt:formatNumber type="number"
-                                                            value="${orderDetail.price * orderDetail.quantity}" /> đ
-                                                    </p>
-                                                </td>
-                                                <td></td>
-
-                                            </tr>
-                                        </c:forEach> -->
                                     </c:forEach>
 
                                 </tbody>

@@ -94,10 +94,9 @@
                         <div class="form-outline mb-4">
                           <label class="form-label" for="form3Example3cg">Email</label>
                           <input type="email" id="form3Example3cg" class="form-control" name="username" path="email" />
-
                         </div>
 
-                        <!-- Password -->
+                        <!-- Password  -->
                         <div class="form-outline mb-4">
                           <label class="form-label" for="form3Example4cg">Mật khẩu</label>
                           <input type="password" id="form3Example4cg" class="form-control" name="password"
@@ -106,8 +105,6 @@
                         <div>
                           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         </div>
-
-
 
                         <!-- Submit -->
                         <div class="d-flex justify-content-center">

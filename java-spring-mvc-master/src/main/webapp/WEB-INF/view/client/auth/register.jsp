@@ -77,15 +77,22 @@
                   <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
                       <h2 class="text-uppercase text-center mb-5">Tạo tài khoản</h2>
-                      <form:form method="post" action="/register" modelAttribute="registerUser">
-                        <c:set var="errorPassword">
+                      <form:form method="post" action="/register" modelAttribute="registerUser"
+                        enctype="multipart/form-data">
+                        <c:set var="errorConfirmPassword">
                           <form:errors path="confirmPassword" cssClass="invalid-feedback" />
+                        </c:set>
+                        <c:set var="errorPassword">
+                          <form:errors path="password" cssClass="invalid-feedback" />
                         </c:set>
                         <c:set var="errorEmail">
                           <form:errors path="email" cssClass="invalid-feedback" />
                         </c:set>
                         <c:set var="errorFirstName">
                           <form:errors path="firstName" cssClass="invalid-feedback" />
+                        </c:set>
+                        <c:set var="errorLastName">
+                          <form:errors path="lastName" cssClass="invalid-feedback" />
                         </c:set>
                         <!-- First Name -->
                         <div class="form-outline mb-4">
@@ -98,8 +105,9 @@
                         <!-- Last Name -->
                         <div class="form-outline mb-4">
                           <label class="form-label" for="form3Example1cg">Tên</label>
-                          <form:input type="text" id="form3Example1cg" class="form-control form-control-lg"
-                            path="lastName" />
+                          <form:input type="text" id="form3Example1cg"
+                            class="form-control ${not empty errorLastName ? 'is-invalid' : ''}" path="lastName" />
+                          ${errorLastName}
                         </div>
 
                         <!-- Email -->
@@ -116,16 +124,25 @@
                           <form:input type="password" id="form3Example4cg"
                             class="form-control ${not empty errorPassword ? 'is-invalid' : ''}" path="password" />
                           ${errorPassword}
-
                         </div>
 
                         <!-- Confirm Password -->
                         <div class="form-outline mb-4">
                           <label class="form-label" for="form3Example4cdg">Nhập lại mật khẩu</label>
-                          <form:input type="password" id="form3Example4cdg" class="form-control form-control-lg"
+                          <form:input type="password" id="form3Example4cdg"
+                            class="form-control ${not empty errorConfirmPassword ? 'is-invalid' : ''}"
                             path="confirmPassword" />
+                          ${errorConfirmPassword}
                         </div>
 
+                        <div class="mb-3 col-12 col-md-6">
+                          <label for="avatarFile" class="form-label">Avatar</label>
+                          <input class="form-control" type="file" id="avatarFile" name="springFile"
+                            accept=".png, .jpg, .jpeg" />
+                        </div>
+                        <div class="mb-3 col-12">
+                          <img style="max-height: 250px; display: none;" id="avatarPreview" alt="Avatar preview">
+                        </div>
 
                         <!-- Submit -->
                         <div class="d-flex justify-content-center">

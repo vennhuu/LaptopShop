@@ -7,9 +7,10 @@ import vn.spring.laptopshop.service.validator.RegisterChecked;
 @RegisterChecked
 public class RegisterDTO {
 
-  @Size(min = 1, message = "Fullname phải có tối thiểu 1 kí tự")
+  @Size(min = 1, message = "Họ phải có tối thiểu 1 kí tự")
   private String firstName;
 
+  @Size(min = 1 , message = "Tên phải có ít nhất 1 kí tự")
   private String lastName;
 
   @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
@@ -19,6 +20,8 @@ public class RegisterDTO {
   private String password;
 
   private String confirmPassword;
+
+  private String avatar ;
 
   public String getFirstName() {
     return firstName;
@@ -58,6 +61,14 @@ public class RegisterDTO {
 
   public void setConfirmPassword(String confirmPassword) {
     this.confirmPassword = confirmPassword;
+  }
+
+  public String getAvatar() {
+    return avatar;
+  }
+
+  public void setAvatar(String avatar) {
+    this.avatar = avatar;
   }
 
 }

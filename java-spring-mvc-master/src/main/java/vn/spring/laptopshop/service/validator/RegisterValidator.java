@@ -30,7 +30,7 @@ public class RegisterValidator implements ConstraintValidator<RegisterChecked, R
     }
 
     // Additional validations can be added here
-
+    // check email
     if (this.userService.checkEmailExist(user.getEmail())) {
       context.buildConstraintViolationWithTemplate("Email đã tồn tại")
           .addPropertyNode("email")

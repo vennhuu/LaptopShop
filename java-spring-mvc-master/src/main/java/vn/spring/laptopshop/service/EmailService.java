@@ -13,7 +13,6 @@ import vn.spring.laptopshop.domain.Order;
 import vn.spring.laptopshop.domain.User;
 
 @Service
-
 // sử dụng 2 thử viện chính là javamailsender và MimeMessageHelper để gửi email
 // javamailsender để tạo mail và gửi mail
 // MimeMessageHelper để hỗ trợ việc tạo nội dung email, bao gồm cả phần đính kèm
@@ -40,7 +39,7 @@ public class EmailService {
         helper.setText("Dear " + order.getReceiverName() + ",\n\n" +
                 "Thank you for your purchase! Please find attached the invoice for your order #" + order.getId()
                 + ".\n\n" +
-                "Best regards,\nLaptop Shop Team");
+                "Best regards,\nElcome Store");
         // ĐÍNH KÈM FILE PDF
         helper.addAttachment("invoice_order_" + order.getId() + ".pdf", new ByteArrayResource(pdfBytes));
         // GỬI EMAIL

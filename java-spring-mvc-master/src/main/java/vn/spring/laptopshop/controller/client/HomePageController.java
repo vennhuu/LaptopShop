@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -23,6 +25,7 @@ import vn.spring.laptopshop.domain.User;
 import vn.spring.laptopshop.domain.dto.RegisterDTO;
 import vn.spring.laptopshop.service.OrderService;
 import vn.spring.laptopshop.service.ProductService;
+import vn.spring.laptopshop.service.UploadService;
 import vn.spring.laptopshop.service.UserService;
 
 @Controller
@@ -31,12 +34,14 @@ public class HomePageController {
   private final UserService userService;
   private final PasswordEncoder passwordEncoder;
   private final OrderService orderService ;
+  private final UploadService uploadService ;
 
-  public HomePageController(ProductService productService, UserService userService, PasswordEncoder passwordEncoder , OrderService orderService) {
+  public HomePageController(ProductService productService, UserService userService, PasswordEncoder passwordEncoder , OrderService orderService , UploadService uploadService) {
     this.productService = productService;
     this.userService = userService;
     this.passwordEncoder = passwordEncoder;
     this.orderService = orderService ;
+    this.uploadService = uploadService ;
   }
 
   @GetMapping("/")
@@ -54,7 +59,7 @@ public class HomePageController {
 
   @PostMapping("/register")
   public String handleRegister(@ModelAttribute("registerUser") @Valid RegisterDTO registerDTO,
-      BindingResult bindingResult) {
+      BindingResult bindingResult , @RequestParam("springFile") MultipartFile file) {
 
     // Validate
     if (bindingResult.hasErrors()) {
@@ -62,9 +67,11 @@ public class HomePageController {
     }
 
     User user = this.userService.registerDTOtoUser(registerDTO);
+    String avatar = this.uploadService.handleSaveUploadFile(file, "avatar") ;
 
     String hashPassword = this.passwordEncoder.encode(user.getPassword());
-
+    
+    user.setAvatar(avatar);
     user.setPassword(hashPassword);
     user.setRole(this.userService.getRoleByName("USER"));
 
@@ -153,5 +160,4 @@ public class HomePageController {
     }
     return "redirect:/account";
   }
-
 }

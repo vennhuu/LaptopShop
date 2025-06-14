@@ -89,7 +89,7 @@ public class OrderService {
         return this.orderRepository.findByUser(user);
     }
 
-    public ByteArrayOutputStream generateInvoicePDF(Order order) throws Exception {
+  public ByteArrayOutputStream generateInvoicePDF(Order order) throws Exception {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     PdfWriter writer = new PdfWriter(baos);
     PdfDocument pdf = new PdfDocument(writer);

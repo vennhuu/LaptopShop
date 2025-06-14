@@ -22,12 +22,10 @@ import vn.spring.laptopshop.service.UserService;
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration {
 
-
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
-
 
   @Bean
   public UserDetailsService userDetailsService(UserService userService) {

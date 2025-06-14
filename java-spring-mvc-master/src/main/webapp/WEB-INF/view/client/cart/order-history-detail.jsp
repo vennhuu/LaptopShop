@@ -68,9 +68,7 @@
                         <h2 class="text-center">Chi tiết đơn hàng</h2>
                         <p style="margin-top: 16px;">ID đơn hàng : ${order.id}</p>
                         <p>Trạng Thái: ${order.status}</p>
-                        <p>Tổng tiền
-                            <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
-                        </p>
+                        <p>Ngày đặt hàng: ${order.dateOrder}</p>
 
                         <div class="table-responsive" style="margin-top: 32px;">
                             <table class="table">
