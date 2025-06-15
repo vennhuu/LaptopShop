@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
       <meta name="author" content="Hỏi Dân IT" />
-      <title>Users</title>
+      <title>Quản lý người dùng</title>
       <link href="/css/styles.css" rel="stylesheet" />
       <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -21,19 +21,19 @@
         <div id="layoutSidenav_content">
           <main>
             <div class="container-fluid px-4">
-              <h1 class="mt-4">Manage User</h1>
+              <h1 class="mt-4">Quản lý người dùng</h1>
               <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"> <a href="/admin"> Dashboard </a></li>
-                <li class="breadcrumb-item active"><a href="/admin/user"> Users </a></li>
+                <li class="breadcrumb-item"> <a href="/admin"> Tổng quan </a></li>
+                <li class="breadcrumb-item active"><a href="/admin/user"> Người dùng </a></li>
               </ol>
 
               <div class="mt-5">
                 <div class="row">
                   <div class="col-12 mx-auto">
                     <div class="d-flex justify-content-between">
-                      <h3>Table Users</h3>
+                      <h3>Bảng người dùng</h3>
                       <a href="/admin/user/create">
-                        <button class="btn btn-primary">Create user</button>
+                        <button class="btn btn-primary">Tạo mới người dùng</button>
                       </a>
                     </div>
                     <hr />
@@ -42,9 +42,9 @@
                         <tr>
                           <th>ID</th>
                           <th>Email</th>
-                          <th>Full Name</th>
-                          <th>Role</th>
-                          <th>Action</th>
+                          <th>Tên đầy đủ</th>
+                          <th>Vai trò</th>
+                          <th>Hành động</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -55,9 +55,9 @@
                             <td>${user.fullName}</td>
                             <td>${user.role.name}</td>
                             <td>
-                              <a href="/admin/user/${user.id}" class="btn btn-success">View</a>
-                              <a href="/admin/user/update/${user.id}" class="btn btn-warning">Update</a>
-                              <a href="/admin/user/delete/${user.id}" class="btn btn-danger">Delete</a>
+                              <a href="/admin/user/${user.id}" class="btn btn-success">Xem</a>
+                              <a href="/admin/user/update/${user.id}" class="btn btn-warning">Cập nhật</a>
+                              <a href="/admin/user/delete/${user.id}" class="btn btn-danger">Xóa</a>
                             </td>
                           </tr>
                         </c:forEach>

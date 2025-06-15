@@ -25,16 +25,16 @@
             <div id="layoutSidenav_content">
               <main>
                 <div class="container-fluid px-4">
-                  <h1 class="mt-4">Manage Orders</h1>
+                  <h1 class="mt-4">Quản lý đơn hàng</h1>
                   <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"> <a href="/admin">Dashboard </a></li>
-                    <li class="breadcrumb-item active"><a href="/admin/order"> Order </a></li>
-                    <li class="breadcrumb-item active"> Update</li>
+                    <li class="breadcrumb-item"> <a href="/admin">Tổng quan </a></li>
+                    <li class="breadcrumb-item active"><a href="/admin/order"> Đơn hàng </a></li>
+                    <li class="breadcrumb-item active"> Cập nhật </li>
                   </ol>
                   <div class="container mt-5">
                     <div class="row">
                       <div class="col-md-6 col-12 mx-auto">
-                        <h1> Update Order</h1>
+                        <h1> Cập nhật người dùng </h1>
                         <hr />
                         <form:form method="post" action="/admin/order/update" modelAttribute="newOrder" class="row"
                           enctype="multipart/form-data">
@@ -44,22 +44,22 @@
                           </div>
                           <div class="mb-3 alert alert-warning">
                             <div class="mb-3 col-12">
-                              <label>Order ID = ${newOrder.id} </label>
+                              <label> ID đơn hàng = ${newOrder.id} </label>
                             </div>
                             <div class="col-12">
-                              <label class="form-label">Total price: </label>
+                              <label class="form-label">Tổng giá trị </label>
                               <fmt:formatNumber type="number" value="${newOrder.totalPrice}" /> đ
                             </div>
 
                           </div>
 
                           <div class="mb-3 col-12">
-                            <label class="form-label">User:</label>
+                            <label class="form-label">Người dùng:</label>
                             <form:input type="text" class="form-control" disabled="true" path="user.fullName" />
                           </div>
 
                           <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label">Status:</label>
+                            <label class="form-label">Trạng thái:</label>
                             <form:select class="form-select" path="status">
                               <form:option value="PENDING">PENDING</form:option>
                               <form:option value="SHIPPING">SHIPPING</form:option>
@@ -70,7 +70,7 @@
 
 
                           <div class="mb-5 col-12">
-                            <button type="submit" class="btn btn-warning">Update</button>
+                            <button type="submit" class="btn btn-warning">Cập nhật</button>
                           </div>
 
                         </form:form>

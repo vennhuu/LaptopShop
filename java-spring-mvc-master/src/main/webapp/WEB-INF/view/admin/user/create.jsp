@@ -12,7 +12,7 @@
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
           <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
           <meta name="author" content="Hỏi Dân IT" />
-          <title>Create User</title>
+          <title>Tạo mới</title>
           <link href="/css/styles.css" rel="stylesheet" />
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
           <script>
@@ -42,16 +42,16 @@
             <div id="layoutSidenav_content">
               <main>
                 <div class="container-fluid px-4">
-                  <h1 class="mt-4">Manage User</h1>
+                  <h1 class="mt-4">Quản lý người dùng</h1>
                   <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                    <li class="breadcrumb-item active"><a href="/admin/user">Users</a></li>
-                    <li class="breadcrumb-item active"><a href="/admin/user/create">Create</a></li>
+                    <li class="breadcrumb-item"><a href="/admin">Tổng quan</a></li>
+                    <li class="breadcrumb-item active"><a href="/admin/user">Người dùng</a></li>
+                    <li class="breadcrumb-item active"><a href="/admin/user/create">Tạo mới</a></li>
                   </ol>
                   <div class="mt-5">
                     <div class="row">
                       <div class="col-md-6 col-12 mx-auto">
-                        <h1>Create User</h1>
+                        <h1>Tạo mới người dùng</h1>
                         <hr />
                         <form:form method="post" action="/admin/user/create" modelAttribute="newUser" class="row"
                           enctype="multipart/form-data" onsubmit="return validateForm()">
@@ -68,44 +68,44 @@
                             <c:set var="errorPassword">
                               <form:errors path="password" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Password</label>
+                            <label class="form-label">Mật khẩu</label>
                             <form:input type="password"
                               class="form-control ${not empty errorPassword ? 'is-invalid' : ''}" path="password" />
                             ${errorPassword}
                           </div>
                           <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label">Phone number</label>
+                            <label class="form-label">Số điện thoại</label>
                             <form:input type="text" class="form-control" path="phone" pattern="[0-9]{10,11}"
                               title="Phone number must contain only numbers and be 10-11 digits long" required="true" />
-                            <span id="phoneError" class="error">Phone number must contain only numbers (10-11
-                              digits).</span>
+                            <span id="phoneError" class="error">Số điện thoại chỉ chứa số(10-11
+                              số).</span>
                           </div>
                           <div class="mb-3 col-12 col-md-6">
                             <c:set var="errorFullName">
                               <form:errors path="fullName" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Full Name</label>
+                            <label class="form-label">Tên đầy đủ</label>
                             <form:input type="text" class="form-control ${not empty errorFullName ? 'is-invalid' : ''}"
                               path="fullName" pattern="[A-Za-zÀ-ỹ\s]+"
                               title="Full name must contain only letters and spaces (including Vietnamese characters)"
                               required="true" />
                             ${errorFullName}
-                            <span id="nameError" class="error">Full name must contain only letters and spaces (including
-                              Vietnamese characters).</span>
+                            <span id="nameError" class="error">Tên đầy đủ chỉ chứa chữ và dấu cách(có thể chứa chữ tiếng
+                              việt).</span>
                           </div>
                           <div class="mb-3 col-12">
-                            <label class="form-label">Address</label>
+                            <label class="form-label">Địa chỉ</label>
                             <form:input type="text" class="form-control" path="address" />
                           </div>
                           <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label">Role</label>
+                            <label class="form-label">Vai trò</label>
                             <form:select class="form-select" path="role.name">
                               <form:option value="ADMIN">ADMIN</form:option>
                               <form:option value="USER">USER</form:option>
                             </form:select>
                           </div>
                           <div class="mb-3 col-12 col-md-6">
-                            <label for="avatarFile" class="form-label">Avatar</label>
+                            <label for="avatarFile" class="form-label">Ảnh đại diện</label>
                             <input class="form-control" type="file" id="avatarFile" name="springFile"
                               accept=".png, .jpg, .jpeg" />
                           </div>
@@ -113,7 +113,7 @@
                             <img style="max-height: 250px; display: none;" id="avatarPreview" alt="Avatar preview">
                           </div>
                           <div class="mb-5 col-12">
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary">Tạo</button>
                           </div>
                         </form:form>
                       </div>

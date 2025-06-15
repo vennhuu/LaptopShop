@@ -25,18 +25,18 @@
             <div id="layoutSidenav_content">
               <main>
                 <div class="container-fluid px-4">
-                  <h1 class="mt-4">Manage Orders</h1>
+                  <h1 class="mt-4">Quản lý đơn hàng</h1>
                   <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"> <a href="/admin"> Dashboard </a></li>
-                    <li class="breadcrumb-item active"><a href="/admin/order"> Orders </a></li>
-                    <li class="breadcrumb-item active"> Detail ID = ${id}</li>
+                    <li class="breadcrumb-item"> <a href="/admin"> Tổng quan </a></li>
+                    <li class="breadcrumb-item active"><a href="/admin/order"> Đơn hàng </a></li>
+                    <li class="breadcrumb-item active"> ID đơn hàng = ${id}</li>
                   </ol>
 
                   <div class="container mt-5">
                     <div class="row">
                       <div class="col-12 mx-auto">
                         <div class="d-flex justify-content-between">
-                          <h3> Order detail ID = ${id}</h3>
+                          <h3> ID đơn hàng = ${id}</h3>
                         </div>
                         <hr />
                         <div class="table-responsive">
@@ -131,7 +131,7 @@
                         </div>
 
 
-                        <a href="/admin/order" class="btn btn-success mt-2">Back</a>
+                        <a href="/admin/order" class="btn btn-success mt-2">Quay về</a>
                       </div>
                     </div>
                   </div>

@@ -12,7 +12,7 @@
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
           <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
           <meta name="author" content="Hỏi Dân IT" />
-          <title>Create Product</title>
+          <title>Tạo mới sản phẩm</title>
           <link href="/css/styles.css" rel="stylesheet" />
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
           <script>
@@ -35,16 +35,16 @@
             <div id="layoutSidenav_content">
               <main>
                 <div class="container-fluid px-4">
-                  <h1 class="mt-4">Manage Products</h1>
+                  <h1 class="mt-4">Quản lý sản phẩm</h1>
                   <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                    <li class="breadcrumb-item active"><a href="/admin/product">Products</a></li>
-                    <li class="breadcrumb-item active"><a href="/admin/product/create">Create</a></li>
+                    <li class="breadcrumb-item"><a href="/admin">Tổng quan</a></li>
+                    <li class="breadcrumb-item active"><a href="/admin/product">Sản phẩm</a></li>
+                    <li class="breadcrumb-item active"><a href="/admin/product/create">Tạo mới</a></li>
                   </ol>
                   <div class="mt-5">
                     <div class="row">
                       <div class="col-md-6 col-12 mx-auto">
-                        <h1>Create a product</h1>
+                        <h1>Tạo mới sản phẩm</h1>
                         <hr />
                         <form:form method="post" action="/admin/product/create" modelAttribute="newProduct" class="row"
                           enctype="multipart/form-data">
@@ -53,7 +53,7 @@
                             <c:set var="errorName">
                               <form:errors path="name" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Name <span style="color: red;">*</span></label>
+                            <label class="form-label">Tên <span style="color: red;">*</span></label>
                             <form:input type="text" class="form-control ${not empty errorName ? 'is-invalid' : ''}"
                               path="name" required="true" />
                             ${errorName}
@@ -62,7 +62,7 @@
                             <c:set var="errorPrice">
                               <form:errors path="price" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Price <span style="color: red;">*</span></label>
+                            <label class="form-label">Giá <span style="color: red;">*</span></label>
                             <form:input type="number" class="form-control ${not empty errorPrice ? 'is-invalid' : ''}"
                               path="price" required="true" />
                             ${errorPrice}
@@ -72,7 +72,7 @@
                             <c:set var="errorDetailDesc">
                               <form:errors path="detailDesc" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Detail description <span style="color: red;">*</span></label>
+                            <label class="form-label">Mô tả đầy đủ <span style="color: red;">*</span></label>
                             <form:textarea class="form-control ${not empty errorDetailDesc ? 'is-invalid' : ''}"
                               path="detailDesc" required="true" />
                             ${errorDetailDesc}
@@ -82,7 +82,7 @@
                             <c:set var="errorShortDesc">
                               <form:errors path="shortDesc" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Short description <span style="color: red;">*</span></label>
+                            <label class="form-label">Mô tả ngắn gọn <span style="color: red;">*</span></label>
                             <form:input type="text" class="form-control ${not empty errorShortDesc ? 'is-invalid' : ''}"
                               path="shortDesc" required="true" />
                             ${errorShortDesc}
@@ -91,7 +91,7 @@
                             <c:set var="errorQuantity">
                               <form:errors path="quantity" cssClass="invalid-feedback" />
                             </c:set>
-                            <label class="form-label">Quantity <span style="color: red;">*</span></label>
+                            <label class="form-label">Số lượng <span style="color: red;">*</span></label>
                             <form:input type="number"
                               class="form-control ${not empty errorQuantity ? 'is-invalid' : ''}" path="quantity"
                               required="true" />
@@ -99,7 +99,7 @@
                           </div>
 
                           <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label">Factory <span style="color: red;">*</span></label>
+                            <label class="form-label">Nhà sản xuất <span style="color: red;">*</span></label>
                             <form:select class="form-select" path="factory" required="true">
                               <form:option value="APPLE">Apple (MacBook)</form:option>
                               <form:option value="ASUS">Asus</form:option>
@@ -110,7 +110,7 @@
                             </form:select>
                           </div>
                           <div class="mb-3 col-12 col-md-6">
-                            <label class="form-label">Target <span style="color: red;">*</span></label>
+                            <label class="form-label">Mục tiêu <span style="color: red;">*</span></label>
                             <form:select class="form-select" path="target" required="true">
                               <form:option value="GAMING">Gaming</form:option>
                               <form:option value="SINHVIEN-VANPHONG">Sinh viên - Văn phòng</form:option>
@@ -120,7 +120,7 @@
                             </form:select>
                           </div>
                           <div class="mb-3 col-12 col-md-6">
-                            <label for="avatarFile" class="form-label">Image</label>
+                            <label for="avatarFile" class="form-label">Ảnh</label>
                             <input class="form-control" type="file" id="avatarFile" name="springFile"
                               accept=".png, .jpg, .jpeg" />
                           </div>
@@ -129,7 +129,7 @@
                           </div>
 
                           <div class="mb-5 col-12">
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary">Tạo mới</button>
                           </div>
 
                         </form:form>

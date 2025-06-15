@@ -22,19 +22,19 @@
           <div id="layoutSidenav_content">
             <main>
               <div class="container-fluid px-4">
-                <h1 class="mt-4">Manage Product</h1>
+                <h1 class="mt-4">Quản lý sản phẩm</h1>
                 <ol class="breadcrumb mb-4">
-                  <li class="breadcrumb-item"> <a href="/admin">Dashboard </a></li>
-                  <li class="breadcrumb-item active"><a href="/admin/product"> Products </a></li>
-                  <li class="breadcrumb-item active"> Delete ID = ${id}</li>
+                  <li class="breadcrumb-item"> <a href="/admin">Tổng quan </a></li>
+                  <li class="breadcrumb-item active"><a href="/admin/product"> Sản phẩm </a></li>
+                  <li class="breadcrumb-item active"> Xóa người dùng ID = ${id}</li>
                 </ol>
                 <div class="container mt-5">
                   <div class="row">
                     <div class="col-md-6 col-12 mx-auto">
-                      <h3> Delete product with ID = ${id}</h3>
+                      <h3> Xóa người dùng ID = ${id}</h3>
                       <hr />
                       <div class="alert alert-danger">
-                        Are you sure to delete this product?
+                        Bạn có chắc muốn xóa sản phẩm này ?
                       </div>
 
                       <form:form method="post" action="/admin/product/delete" modelAttribute="newProduct">
@@ -42,7 +42,7 @@
                           <label class="form-label">Id</label>
                           <form:input value="${id}" type="text" class="form-control" path="id" />
                         </div>
-                        <button type="submit" class="btn btn-danger">Confirm</button>
+                        <button type="submit" class="btn btn-danger">Xác nhận</button>
                       </form:form>
                     </div>
                   </div>

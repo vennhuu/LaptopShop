@@ -29,16 +29,16 @@
           <div id="layoutSidenav_content">
             <main>
               <div class="container-fluid px-4">
-                <h1 class="mt-4">Manage User</h1>
+                <h1 class="mt-4">Quản lý người dùng</h1>
                 <ol class="breadcrumb mb-4">
-                  <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                  <li class="breadcrumb-item active"><a href="/admin/user">Users</a></li>
-                  <li class="breadcrumb-item active">Update</li>
+                  <li class="breadcrumb-item"><a href="/admin">Tổng quan</a></li>
+                  <li class="breadcrumb-item active"><a href="/admin/user">Người dùng</a></li>
+                  <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
                 <div class="container mt-5">
                   <div class="row">
                     <div class="col-md-6 col-12 mx-auto">
-                      <h1>Update User</h1>
+                      <h1>Cập nhật người dùng</h1>
                       <hr />
                       <form:form method="post" action="/admin/user/update" modelAttribute="newUser"
                         onsubmit="return validateForm()">
@@ -51,24 +51,24 @@
                           <form:input type="email" class="form-control" path="email" disabled="true" />
                         </div>
                         <div class="mb-3">
-                          <label class="form-label">Phone number</label>
+                          <label class="form-label">Số điện thoại</label>
                           <form:input type="text" class="form-control" path="phone" pattern="[0-9]{10,11}"
                             title="Phone number must contain only numbers and be 10-11 digits long" required="true" />
-                          <span id="phoneError" class="error">Phone number must contain only numbers (10-11
-                            digits).</span>
+                          <span id="phoneError" class="error">Số điện thoại chỉ chứa số (10-11
+                            số).</span>
                         </div>
                         <div class="mb-3">
-                          <label class="form-label">Full Name</label>
+                          <label class="form-label">Tên đầy đủ</label>
                           <form:input type="text" class="form-control" path="fullName" pattern="[A-Za-zÀ-ỹ\s]+"
                             title="Full name must contain only letters and spaces" required="true" />
-                          <span id="nameError" class="error">Full name must contain only letters and spaces (including
-                            Vietnamese characters).</span>
+                          <span id="nameError" class="error">Tên đầy đủ chỉ chứa chữ và dấu cách(có thể chứa chữ tiếng
+                            việt).</span>
                         </div>
                         <div class="mb-3">
-                          <label class="form-label">Address</label>
+                          <label class="form-label">Địa chỉ</label>
                           <form:input type="text" class="form-control" path="address" />
                         </div>
-                        <button type="submit" class="btn btn-warning">Update</button>
+                        <button type="submit" class="btn btn-warning">Cập nhật</button>
                       </form:form>
                     </div>
                   </div>

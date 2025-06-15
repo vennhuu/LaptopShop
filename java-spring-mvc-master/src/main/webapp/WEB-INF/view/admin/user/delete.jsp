@@ -22,19 +22,19 @@
           <div id="layoutSidenav_content">
             <main>
               <div class="container-fluid px-4">
-                <h1 class="mt-4">Manage User</h1>
+                <h1 class="mt-4">Quản lý người dùng</h1>
                 <ol class="breadcrumb mb-4">
-                  <li class="breadcrumb-item"> <a href="/admin">Dashboard </a></li>
-                  <li class="breadcrumb-item active"><a href="/admin/user"> Users </a></li>
-                  <li class="breadcrumb-item active"> Delete ID = ${id}</li>
+                  <li class="breadcrumb-item"> <a href="/admin">Tổng quan </a></li>
+                  <li class="breadcrumb-item active"><a href="/admin/user"> Người dùng </a></li>
+                  <li class="breadcrumb-item active"> Xóa ID = ${id}</li>
                 </ol>
                 <div class="container mt-5">
                   <div class="row">
                     <div class="col-md-6 col-12 mx-auto">
-                      <h3> Delete user with ID = ${id}</h3>
+                      <h3> Xóa người dùng có ID = ${id}</h3>
                       <hr />
                       <div class="alert alert-danger">
-                        Are you sure to delete this user?
+                        Bạn có chắc muốn xóa người dùng này ?
                       </div>
 
                       <form:form method="post" action="/admin/user/delete" modelAttribute="newUser">
@@ -42,7 +42,7 @@
                           <label class="form-label">Id</label>
                           <form:input value="${id}" type="text" class="form-control" path="id" />
                         </div>
-                        <button type="submit" class="btn btn-danger">Confirm</button>
+                        <button type="submit" class="btn btn-danger">Xác nhận</button>
                       </form:form>
                     </div>
                   </div>

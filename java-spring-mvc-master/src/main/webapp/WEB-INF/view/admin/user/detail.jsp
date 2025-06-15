@@ -22,33 +22,33 @@
           <div id="layoutSidenav_content">
             <main>
               <div class="container-fluid px-4">
-                <h1 class="mt-4">Manage User</h1>
+                <h1 class="mt-4">Quản lý người dùng</h1>
                 <ol class="breadcrumb mb-4">
-                  <li class="breadcrumb-item"> <a href="/admin"> Dashboard </a></li>
-                  <li class="breadcrumb-item active"><a href="/admin/user"> Users </a></li>
-                  <li class="breadcrumb-item active"> Detail ID = ${id}</li>
+                  <li class="breadcrumb-item"> <a href="/admin"> Tổng quan </a></li>
+                  <li class="breadcrumb-item active"><a href="/admin/user"> Người dùng </a></li>
+                  <li class="breadcrumb-item active"> ID người dùng = ${id}</li>
                 </ol>
                 <div class="container mt-5">
                   <div class="row">
                     <div class="col-12 mx-auto">
                       <div class="d-flex justify-content-between">
-                        <h3> User detail ID = ${id}</h3>
+                        <h3> ID người dùng = ${id}</h3>
                       </div>
                       <hr />
                       <div class="card" style="width: 60%;">
                         <div class="card-header">
-                          User information
+                          Thông tin người dùng
                         </div>
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item">ID: ${user.id}</li>
                           <li class="list-group-item">Email: ${user.email}</li>
-                          <li class="list-group-item">Full name: ${user.fullName}</li>
-                          <li class="list-group-item">Role: ${user.role.name}</li>
-                          <li class="list-group-item">Address: ${user.address}</li>
-                          <li class="list-group-item">Phone number: ${user.phone}</li>
+                          <li class="list-group-item">Tên đầy đủ: ${user.fullName}</li>
+                          <li class="list-group-item">Vai trò: ${user.role.name}</li>
+                          <li class="list-group-item">Địa chỉ: ${user.address}</li>
+                          <li class="list-group-item">Số điện thoại: ${user.phone}</li>
                         </ul>
                       </div>
-                      <a href="/admin/user" class="btn btn-success mt-2">Back</a>
+                      <a href="/admin/user" class="btn btn-success mt-2">Quay về</a>
                     </div>
                   </div>
                 </div>

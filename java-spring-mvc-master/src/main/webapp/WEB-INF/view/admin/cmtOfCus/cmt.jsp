@@ -10,7 +10,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
             <meta name="author" content="Hỏi Dân IT" />
-            <title>Feedback</title>
+            <title>Đánh giá</title>
             <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -23,25 +23,25 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Manage Feedback</h1>
+                            <h1 class="mt-4">Đánh giá</h1>
                             <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                <li class="breadcrumb-item active"><a href="/admin/cmtCus">Feedback</a></li>
+                                <li class="breadcrumb-item"><a href="/admin">Tổng quan</a></li>
+                                <li class="breadcrumb-item active"><a href="/admin/cmtCus">Đánh giá</a></li>
                             </ol>
                             <div class="mt-5">
                                 <div class="row">
                                     <div class="col-12 mx-auto">
                                         <div class="d-flex justify-content-between">
-                                            <h3>Table Feedback</h3>
+                                            <h3>Bảng đánh giá</h3>
                                         </div>
                                         <hr />
                                         <table class="table">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">ID</th>
-                                                    <th scope="col">Name</th> <!-- Thay bằng email -->
-                                                    <th scope="col">Name Product</th>
-                                                    <th scope="col">Comment</th>
+                                                    <th scope="col">Tên</th> <!-- Thay bằng email -->
+                                                    <th scope="col">Tên sản phẩm</th>
+                                                    <th scope="col">Đánh giá</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
         <meta name="author" content="Hỏi Dân IT" />
-        <title>Delete Product</title>
+        <title>Xóa sản phẩm</title>
         <link href="/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
       </head>
@@ -22,19 +22,19 @@
           <div id="layoutSidenav_content">
             <main>
               <div class="container-fluid px-4">
-                <h1 class="mt-4">Manage Order</h1>
+                <h1 class="mt-4">Quản lý đơn hàng</h1>
                 <ol class="breadcrumb mb-4">
-                  <li class="breadcrumb-item"> <a href="/admin">Dashboard </a></li>
-                  <li class="breadcrumb-item active"><a href="/admin/order"> Orders </a></li>
-                  <li class="breadcrumb-item active"> Delete ID = ${id}</li>
+                  <li class="breadcrumb-item"> <a href="/admin">Tổng quan </a></li>
+                  <li class="breadcrumb-item active"><a href="/admin/order"> Đơn hàng </a></li>
+                  <li class="breadcrumb-item active"> Xóa ID = ${id}</li>
                 </ol>
                 <div class="container mt-5">
                   <div class="row">
                     <div class="col-md-6 col-12 mx-auto">
-                      <h3> Delete order with ID = ${id}</h3>
+                      <h3> Xóa đơn hàng với ID = ${id}</h3>
                       <hr />
                       <div class="alert alert-danger">
-                        Are you sure to delete this order?
+                        Bạn có chắc muốn xóa đơn hàng này ?
                       </div>
 
                       <form:form method="post" action="/admin/order/delete" modelAttribute="newOrder">
@@ -42,7 +42,7 @@
                           <label class="form-label">Id</label>
                           <form:input value="${id}" type="text" class="form-control" path="id" />
                         </div>
-                        <button class="btn btn-danger">Confirm</button>
+                        <button class="btn btn-danger">Xác nhận</button>
                       </form:form>
                     </div>
                   </div>

@@ -27,7 +27,7 @@ public class User {
   private String email;
 
   @NotNull
-  @Size(min = 6, message = "Password phải có tối thiểu 6 kí tự")
+  @Size(min = 6, message = "Mật khẩu phải có tối thiểu 6 kí tự")
   private String password;
 
   @NotNull

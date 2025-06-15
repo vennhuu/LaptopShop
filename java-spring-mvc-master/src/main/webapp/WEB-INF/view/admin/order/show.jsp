@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
         <meta name="author" content="Hỏi Dân IT" />
-        <title>Order</title>
+        <title>Đơn hàng</title>
         <link href="/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
       </head>
@@ -23,17 +23,17 @@
           <div id="layoutSidenav_content">
             <main>
               <div class="container-fluid px-4">
-                <h1 class="mt-4">Manage Orders</h1>
+                <h1 class="mt-4">Quản lý đơn hàng</h1>
                 <ol class="breadcrumb mb-4">
-                  <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                  <li class="breadcrumb-item active"><a href="/admin/order">Orders</a></li>
+                  <li class="breadcrumb-item"><a href="/admin">Tổng quan</a></li>
+                  <li class="breadcrumb-item active"><a href="/admin/order">Đơn hàng</a></li>
                 </ol>
 
                 <div class="mt-5">
                   <div class="row">
                     <div class="col-12 mx-auto">
                       <div class="d-flex justify-content-between">
-                        <h3>Table Orders</h3>
+                        <h3>Bảng đơn hàng</h3>
                       </div>
                       <hr />
                       <c:if test="${not empty orders}">
@@ -41,10 +41,10 @@
                           <thead>
                             <tr>
                               <th>ID</th>
-                              <th>Total Price</th>
-                              <th>User</th>
-                              <th>Status</th>
-                              <th>Action</th>
+                              <th>Tổng giá tiền</th>
+                              <th>Người dùng</th>
+                              <th>Trạng thái</th>
+                              <th>Hành động</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -57,12 +57,12 @@
                                 <td>${order.user.fullName}</td>
                                 <td>${order.status}</td>
                                 <td>
-                                  <a href="/admin/order/${order.id}" class="btn btn-success">View</a>
-                                  <a href="/admin/order/update/${order.id}" class="btn btn-warning">Update</a>
-                                  <a href="/admin/order/delete/${order.id}" class="btn btn-danger">Delete</a>
+                                  <a href="/admin/order/${order.id}" class="btn btn-success">Xem</a>
+                                  <a href="/admin/order/update/${order.id}" class="btn btn-warning">Cập nhật</a>
+                                  <a href="/admin/order/delete/${order.id}" class="btn btn-danger">Xóa</a>
                                   <c:if test="${order.status == 'COMPLETE'}">
-                                    <a href="/admin/order/print-invoice/${order.id}" class="btn btn-primary">Send
-                                      Invoice</a>
+                                    <a href="/admin/order/print-invoice/${order.id}" class="btn btn-primary">Gửi
+                                      mail</a>
                                   </c:if>
                                 </td>
                               </tr>
